@@ -1,0 +1,143 @@
+<h1>
+Part 3: canIoCtl
+</h1>
+
+<a href=".">VS2010 project</a>, <a href="../../VS2008/3_CanIoCtlDemo">VS2008 project</a>
+
+<p>
+This part of the tutorial is intended to demonstrate the capabilities of the canIoCtl method, and to give you some methods you can use in your own projects. canIoCtl can perform several different operations, depending on which parameters is passed to it. For the sake of conveniance, we have wrapped each of the different functions into its own function/method, with proper parameters and return types. We have also added some exception throws for cases where the wrong input parameters are given, or when the call to canIoCtl returns an error.
+</p>
+
+<h2>How canIoCtl works</h2>
+<p>
+In C, the signature of canIoCtl is:</p> 
+<code>canStatus canIoCtl  ( const int  hnd,  
+  unsigned int  func,  
+  void *  buf,  
+  unsigned int  buflen  
+ ) 
+</code>
+<p>It takes four parameters: a channel handle which it acts on, an integer which decides which function to perform (each function has its own constant), a pointer to a buffer and the length of the buffer. The buffer holds any input to the function, and if the function returns an output, the buffer will be overwritten with that value. It returns a canStatus which has the value canOK if no error occurred, and an error otherwise. </p>
+
+<p>In C#, the method has four different signatures:</p>
+<dl>
+<dt><code>static Canlib.canStatus canIoCtl(int handle, int func, int val);</code></dt>
+<dd> for functions that take an integer as argument and return nothing.</dd>
+<dt><code>static Canlib.canStatus canIoCtl(int handle, int func, out int val);</code></dt>
+<dd> for functions that might take an integer as a value and return an integer.</dd>
+<dt><code>static Canlib.canStatus canIoCtl(int handle, int func, out string str_buf);</code></dt>
+<dd> for functions that return a string.</dd>
+<dt><code>static Canlib.canStatus canIoCtl(int handle, int func, ref object obj_buf);</code></dt>
+<dd> for functions that act on an object.</dd>
+</dl>
+
+<h2>The library and the sample program</h2>
+
+<h3>The library</h3>
+<p>In order to make working with <code>canIoCtl</code> a bit easier, we have included a library with methods which use the various functions of <code>canIoCtl</code>. These methods are all static and always take the handle as their first argument. If the <code>canIoCtl</code> function requires an additional parameter, it is the second argument of the function. Instead of output parameters, the methods return any result of the call. Any error messages from <code>canIoCt</code>l result in exceptions of the class <code>canIoCtlException</code>, which is defined in the same file as the library. </p>
+
+<p>To use these methods, you can either import the entire namespace or just copy the parts you need to your own project. If you choose to copy a method, you will need to include the <code>canIoCtlException</code> class as well as the <code>CheckForException</code> method, or modify the method to handle errors in some other way.</p>
+
+<h3>Helper and utility methods</h3>
+<p>The program includes some helper methods. They are mostly for testing purposes, but you might find some of them useful. </p>
+<dl>
+<dt><code>private static void CheckStatus(Canlib.canStatus status, string method)</code></dt>
+<dd>If the status is an error code, this method will display an error message stating in which method the error occurred.</dd>
+<dt><code>private static void DumpMessage(int hnd, int id, byte[] data, int dlc, int flags, long time)</code></dt>
+<dd>Displays a message to the console, including the receiving handle.</dd>
+<dt><code>private static string BusTypeToString(int type)</code></dt>
+<dd>Returns the string representation of a bus type.</dd>
+<dt><code>private static void CheckForException(Canlib.canStatus status)</code></dt>
+<dd>Throws a CanIoException if the status is an error code, with the error text of the code.</dd>
+</dl>
+
+<h3>The test program</h3>
+<p>In the Main method of the program, we demonstrate how our methods can be used. The program does the following things:  </p>
+<ol>
+<li>Set up handles for testing. In this sample, we assume that channels 0 and 1 are connected. We also assume that channel 2 is on a remote device. You might need to change this depending on your setup.</li>
+<li>Show how to use prefer EXT and prefer STD to enable automatic setting of the EXT flag.</li>
+<li>Show how to read and flush the error counters.</li>
+<li>Changing the timer scale.</li>
+<li>Demonstrating the Bus On Timer Reset setting.</li>
+<li>Using Transmit Acknowledgements.</li>
+<li>Showing how to read the RX queue size, how to flush the queue and how to set a limit on it.</li>
+<li>Enabling Transmit requests.</li>
+<li>Getting and setting IO port data (commented out by default as it might generate an exception if it is used on an unsupported device).</li>
+<li>Turning on Transmit echo.</li>
+<li>Setting a minimum transmit interval.</li>
+<li>Turning off error frame reporting.</li>
+<li>Testing channel quality, getting RTT, devname and bus type from a remote device, as well as reading the time since the last communication with the device.</li>
+<li>Changing and reading the throttle value of the channel.</li>
+<li>Wait for the user to press a key and exit.</li>
+</ol>
+
+
+<h2><code>canIoCtl</code> functions</h2>
+<h3><code>canIOCTL_PREFER_EXT</code> and <code>canIOCTL_PREFER_STD</code></h3>
+<p>These functions determine whether or not the EXT or STD flags should be enabled by default when messages are written to the channel. If a message has an extended identifier but no EXT flag, the most significant bits of the identifier will be cut off. </p>
+<p>In this library, we have wrapped these functions in <code>PreferEx</code>t and <code>PreferStd</code>, respectively. They only take the handle as an argument. An example of their usage can be found in the Main method, where we try to send a message with an identifier which is too large to be properly sent without the EXT flag.</p>
+
+<h3><code>canIOCTL_CLEAR_ERROR_COUNTERS</code></h3>
+<p>Each channel handle logs how many errors have occurred. These are divided into three types: transmit errors, receive errors and overrun errors. The error counters can be found by using the canReadErrorCounters method. By calling <code>canIOCTL_CLEAR_ERROR_COUNTERS</code>, these counters are reset to zero. </p>
+<p>We have wrapped this function in the <code>ClearErrorCounter</code> method. It takes the channel handle as its parameter and does not return anything. In the Main method, we create a transmit error on channel 0 by closing channel 1 and trying to write a message from channel 0. We then clear the error counter. </p>
+
+<h3><code>canIOCTL_SET_TIMER_SCALE</code> and <code>canIOCTL_GET_TIMER_SCALE</code></h3>
+<p>The timer scale determines how precisely the channel's timestamps will be displayed. Note that it does not change the accuracy of the clock. </p>
+<p>These functions are wrapped as <code>SetTimerScale</code>, which takes the handle and the resolution (in microseconds) as parameters, and <code>GetTimerScale</code>. We test them by setting the resolution very low (so the clock only updates every 100 ms) and sending messages 50 ms apart, thus giving several messages the same timestamp.</p>
+
+
+<h3><code>canIO_SET_TXACK</code> and <code>canIOCTL_GET_TXACK</code></h3>
+<p>Enabling transmit ACKs on a channel results in that channel receiving a message with the TXACK flag enabled every time a message is successfully transmitted. The ACKs are enabled by setting this value to 1 and disabled by setting it to 0 (which is the default value). A third value, 2, also exists. With this setting, transmit ACKs are disabled even for internal use. Any functions which depend on them will stop working properly. </p>
+<p>In the library, we have added the functions <code>SetTXACK</code> and <code>GetTXACK</code> for this purpose.</p>
+
+<h3><code>canIOCTL_GET_RX_BUFFER_LEVEL</code> and <code>canIOCTL_GET_TX_BUFFER_LEVEL</code></h3>
+<p>Returns the number of messages waiting to be received or transmitted, respectively. These functions can be reached using <code>GetRXQueueLevel</code> and <code>GetTXQueueLevel</code>, which both take the handle as their parameters.</p>
+
+<h3><code>canIOCTL_FLUSH_RX_BUFFER</code> and <code>canIOCTL_FLUSH_TX_BUFFER</code></h3>
+<p>Empties the buffers and removes any messages waiting to be received/transmitted. You can use <code>FlushRXBuffer</code> or <code>FlushTXBuffer</code> to call these functions. They are also demonstrated in <code>Main</code>, where we send a message to a channel,check the size of the RX buffer and then flush the buffer, removing the message. </p>
+
+<h3><code>canIOCTL_SET_TXRQ</code></h3>
+<p>Turns transmit requests on or off. If transmit requests are enabled on a channel, the channel will receive a message any time it writes a message to the channel. This method can be called using <code>SetTransmitRequest</code>, which takes the handle and a boolean as parameters, where the boolean parameter's value determines if transmit requests should be enabled or not. </p>
+
+<h3><code>canIOCTL_GET_EVENTHANDLE</code></h3>
+<p>This method returns an event handle, which can be used to make certain things happen when an event occurs on the bus. It is further explained in section 5. It is wrapped by <code>GetEventHandle</code>, but not demonstrated in the program. </p>
+
+<h3><code>canIOCTL_GET_USER_IOPORT</code> and <code>canIOCTL_SET_USER_IOPORT</code></h3>
+<p>This returns (or sets) a <code>canUserIoPortData</code> object, which contains information about the port ID and value. They only work on supported devices. You can use the <code>SetUserIoPortData</code> and <code>GetUserIoPortData</code> methods to call them. </p>
+
+<h3><code>canIOCTL_SET_RX_QUEUE_SIZE</code></h3>
+<p>Determines the maximum size of the RX buffer. Setting this to a too high value will consume nonpaged pool memory. You can call it by using <code>SetRXQueueSize</code>, which takes the handle and the new size of the buffer as arguments. In the <code>Main</code> method, we demonstrate this function by decreasing the buffer size to 5.</p>
+
+<h3><code>canIOCTL_SET_BUSON_TIME_AUTO_RESET</code></h3>
+<p>This function can enable or disable automatic time reset on bus on. By default, this is enabled, so the timer will automatically reset when a handle goes on bus. You can use the <code>SetClockResetAtBusOn</code> function for this. It takes a handle and a boolean as parameters, where the boolean value determines whether or not the clock should reset.</p>
+
+<h3><code>canIOCTL_SET_LOCAL_TXECHO</code></h3>
+<p>Turns local transmit echo on or off. If local transmit echo is on (which it is by default) and one handle on a channel transmits a message, any other handle on the same channel will receive it as a normal message. Use the function <code>SetLocalTXEcho</code> to turn this feature on or off. Like the previous method, it takes a handle and a boolean parameter.</p>
+
+<h3><code>canIOCTL_SET_ERROR_FRAMES_REPORTING</code></h3>
+<p>This function turns error frame reporting on or off. If it is off, the channel handle will ignore any error frames it receives. The <code>SetErrorFramesReporting</code> method wraps this function. </p>
+
+<h3><code>canIOCTL_GET_CHANNEL_QUALITY</code></h3>
+<p>Returns the quality of the channel, between 0 and 100%. It is wrapped by <code>GetChannelQuality</code>.</p>
+
+<h3><code>canIOCTL_GET_ROUNDTRIP_TIME</code></h3>
+<p>Returns the round trip time to a device. Wrapped by <code>GetRoundTripTime</code>.</p>
+
+<h3><code>canIOCTL_GET_BUS_TYPE</code></h3>
+<p>Returns the bus type of the channel handle. Can be either Internal, Remote, Virtual or Local. The return type is an integer and Canlib contains constants for each type. It is wrapped by <code>GetBusType</code> and you can use the helper function <code>BusTypeToString</code> to get the result as a string.</p>
+
+<h3><code>canIOCTL_GET_DEVNAME_ASCII</code></h3>
+<p>This function returns the device name as a string. It is not supported by all devices and will return an error if called on a device which does not support it. In the library, it is wrapped by the <code>GetDevNameASCII</code> function.</p>
+
+<h3><code>canIOCTL_GET_TIME_SINCE_LAST_SEEN</code></h3>
+<p>Returns the time (in ms) since the device on the provided handle was last seen. Mostly useful for remote devices. Wrapped by <code>GetTimeSinceLastSeen</code>.</p>
+
+<h3><code>canIOCTL_TX_INTERVAL</code></h3>
+<p>This function returns or sets the transmission interval of the handle in microseconds. The handle will wait for at least a full interval between message transmissions. If the interval is set to zero, the handle will transmit as quickly as possible. By inputting -1 as the third parameter in the <code>canIoCtl</code> call, it will overwrite the parameter with the current interval. </p>
+
+<p>In the library, this function is wrapped by <code>GetTXInterval</code> (which does not take any additional parameter) for returning the current inteval, and <code>SetTXInterval</code> for setting the interval. <code>SetTXInterval</code> will throw an exception if the interval is negative or higher than one second.</p>
+
+<h3><code>canIOCTL_SET_USB_THROTTLE_SCALED</code> and <code>canIOCTL_GET_USB_THROTTLE_SCALED</code></h3>
+<p>Used for setting or returning the throttle value of the device. A device with low throttle will be very responsive and a device with high throttle will require less system resources. The throttle value will always be between 0 and 100. Some devices do not support setting a throttle value and might ignore it even if they do not return an error.</p>
+
+<p>These functions are wrapped by <code>SetThrottleScaled</code> and <code>GetThrottleScaled</code>, respectively.</p>

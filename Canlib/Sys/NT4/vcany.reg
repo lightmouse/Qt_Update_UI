@@ -1,0 +1,26 @@
+;
+; Installs entries so one LAPcan II can run.
+; A prerequisite is that vcanx.reg has been entered into the registry.
+; The "vcany1" entry created here causes NT to allocate I/O space and an IRQ,
+; but no separate service is started. The vcanx service will understand
+; the resources needed both for "vcanx" and "vcany".
+;
+; Set the database "driver" entry to vcanx if you want one-card mode,
+; without having to bother which PCMCIA slot you are using.
+;
+; Set the database "driver" entry to vcany if you want two-card mode;
+; a LAPcan I in the first slot and a LAPcan II in the second slot.
+;
+; Default setting is one-card mode.
+;
+
+\registry\machine\system\currentcontrolset\services\vcany1\Parameters
+    BusNumber = REG_DWORD 0x0000000
+    BusType = REG_DWORD 0x0000001
+    Pcmcia = REG_DWORD 0x0000001
+    IoLength = REG_DWORD 0x0000008
+    IoBaseAddress = REG_DWORD 0x0000108
+    InterruptNumber = REG_DWORD 0x0000005
+
+\registry\machine\system\currentcontrolset\services\pcmcia\database\KVASER\LAPcan II
+    Driver = vcanx

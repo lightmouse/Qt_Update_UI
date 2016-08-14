@@ -1,0 +1,63 @@
+;
+; Setup default channel mappings for Vector software
+;
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANalyzer0
+   hwChannel = REG_DWORD 0
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANalyzer1
+   hwChannel = REG_DWORD 0x1
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANape0
+   hwChannel = REG_DWORD 0
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANape1
+   hwChannel = REG_DWORD 0x1
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANoe0
+   hwChannel = REG_DWORD 0
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANoe1
+   hwChannel = REG_DWORD 0x1
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANoeRun0
+   hwChannel = REG_DWORD 0
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\CANoeRun1
+   hwChannel = REG_DWORD 0x1
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\Default0
+   hwChannel = REG_DWORD 0
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\Default1
+   hwChannel = REG_DWORD 0x1
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\ProCANopen0
+   hwChannel = REG_DWORD 0
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2
+
+\registry\machine\software\VECTOR\CANDriver 1.0\Software\ProCANopen1
+   hwChannel = REG_DWORD 0x1
+   hwIndex = REG_DWORD 0
+   hwType = REG_DWORD 0x2

@@ -1,0 +1,55 @@
+<h1>
+Sample t scripts
+</h1>
+
+<p>This directory contains a few examples of how to use the t programming language. </p>
+
+<h2><a href="EnvVar/Readme.html">EnvVar</a></h2>
+<p>A C program which demonstrates how to load a t script to a device as well as how to run it and influence its environment variables. </p>
+
+<h2>Other t programs</h2>
+<p>A collection of various scripts. Note that most of these programs don't put the channel on bus. You can do that either by using some program on your computer (like CanKing) or by running another t program which goes on bus. </p>
+
+<p>Most of these programs have more detailed instructions in their comments.</p>
+
+<h3><a href="Misc/bus_ctrl.t">bus_ctrl</a></h3>
+<p>Goes on bus with two channels on start, closes them on stop. The program has an environment variable for the bitrate. When the environment variable is updated, it goes off bus, updates the bitrate and goes on bus again.</p>
+
+<h3><a href="Misc/default_can.t">default_can</a></h3>
+<p>Prints the id of any incoming CAN message without a more specific hook.</p>
+
+<h3><a href="Misc/all_can.t">all_can</a></h3>
+<p>Demonstrates the <code>[*]</code> message hook. Prints the timestamp of the incoming messages and keeps track of the two consecutive messages with the smallest time between them. </p>
+
+<h3><a href="Misc/can_calc.t">can_calc</a></h3>
+<p>Should be used with the <a href="Misc/examples.dbc">sample database</a>. It waits for a message with an id matching the Engine message from the database. If the sequence number (one of the signals) of the message is in order, it will recalculate the values and create a new message which is transmitted. It also stores the incoming signal values in environment variables so they can be read by another program.</p>
+
+<h3><a href="Misc/remote_response.t">remote_response</a></h3>
+<p>Waits for a remote message with a certain identifier, then replies with a message whose data is stored in an environment variable. </p>
+
+<h3><a href="Misc/script_ctrl.t">script_ctrl</a></h3>
+<p>Demonstrates usage of environment variables and how to load scripts on other slots. The environment variables makes it possible to choose which channel and slot a program should use. Setting the environment variable for the file name will load the program and start it. </p>
+
+<h3><a href="Misc/logger_ctrl.t">logger_ctrl</a></h3>
+<p>Starts or stops logging on the device depending on data from incoming messages.</p>
+
+<h3><a href="Misc/timer_array.t">timer_array</a></h3>
+<p>Responds to incoming messages one second after receiving them. The script can handle several delays at once using an array of timers.</p>
+
+<h3><a href="Misc/send_list.t">send_list</a></h3>
+<p>Sends messages according to a list stored in a file. </p>
+
+<h3><a href="Misc/sine_wave.t">sine_wave</a></h3>
+<p>Using the database, sends out a series of messages representing a sine wave.</p>
+
+<h3><a href="Misc/osc_data.t">osc_data</a></h3>
+<p>Reads and writes data to files, using the database to convert physical values to CAN messages.</p>
+
+<h3><a href="Misc/exc_dump.t">exc_dump</a></h3>
+<p>Contains an example of how to handle exceptions.</p>
+
+<h3><a href="Misc/licence.t">licence</a></h3>
+<p>Shows how to create and handle devices for devices. </p>
+
+<h3><a href="Misc/customer_data.t">customer_data</a></h3>
+<p>Reads the customer data on the device (provided it exists) and prints it. Also demonstrates how to use the <code>on key</code> hook. </p>

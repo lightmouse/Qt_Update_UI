@@ -1,0 +1,1827 @@
+                        =============================
+                        Release Notes for CANLIB 5.0
+                        =============================
+
+These release notes apply to both CANLIB SDK and the Windows drivers.
+
+
+Supported operating systems
+========================================================================
+The following OSes are supported by CANLIB 5.0:
+- Windows XP, 32-bit
+- Windows XP, 64-bit (x64 architecture)
+- Windows Server 2003
+- Windows Vista, 32-bit and 64-bit, x64 architecture
+- Windows Server 2008, 32-bit and 64-bit, x64 architecture
+- Windows 7, 32-bit and 64-bit, x64 architecture
+- Windows 8, 32-bit and 64-bit, x64 architecture
+
+If you are using Windows 2000, you should install CANLIB 4.5a
+which is the last release that supports Windows 2000.
+
+If you are using Windows NT 4.0, Windows 98 or Windows ME, 
+you should install CANLIB 3.9.
+
+For Windows 95 support, you can download the 2.x drivers from our web site.
+
+
+
+Device support table
+========================================================================
+                                               Recommended    Required
+Device                            Driver       Firmware       Firmware
+------------------------------------------------------------------------
+Kvaser LAPcan                     kcanx.sys      3.60         1.40 or later
+Kvaser LAPcan II                  kcanx.sys      4.20         4.20 or later
+Kvaser PCIcan                     kcanh.sys      N/A          N/A
+Kvaser PCIcanx                    kcanh.sys      N/A          N/A
+Kvaser PCIEcan                    kcanh.sys      N/A          N/A
+Kvaser BlackBird (all types)      kcanlr.sys     2.5          1.9 or later
+Kvaser Leaf (all types)           kcanl.sys      2.5          1.1 or later
+Kvaser Eagle                      kcany.sys      1.4          1.4 or later
+Kvaser Memorator                  kcane.sys      3.3          2.4 or later
+Kvaser Memorator Professional     kcanl.sys      2.5          1.2 or later
+Kvaser Memorator Light            kcanl.sys      2.5          1.8 or later
+Kvaser Memorator R SemiPro        kcanl.sys      2.5          2.2 or later
+Kvaser USBcan II                  kcane.sys      3.3          2.4 or later
+Kvaser USBcan Rugged              kcane.sys      3.3          2.4 or later
+Kvaser USBcan Professional        kcanl.sys      2.5          1.8 or later
+Kvaser PCIcan II                  kcans.sys      3.3          2.4 or later
+Kvaser PCIcanx II                 kcans.sys      3.3          3.0 or later
+Kvaser PC104+                     kcans.sys      3.3          3.0 or later
+Kvaser PCI104                     kcans.sys      3.3          3.0 or later
+Kvaser Virtual CAN bus            kcanv.sys      N/A
+
+
+In the text below, "USBcan II" also means "USBcan Rugged" and "Kvaser
+Memorator" unless otherwise noted. In the same way, "Kvaser Leaf"
+means any member of the Kvaser Leaf family, and "LAPcan" means LAPcan
+or LAPcan II.
+
+
+SDK Installation
+========================================================================
+
+Note that the CANLIB SDK should not be installed on top of an already installed,
+older edition of CANLIB SDK. You should install into a new directory, or
+uninstall the old version.
+
+In contrast, the driver package may be installed over an old
+installation of the drivers.
+
+NOTE! If the Kvaser Eagle is reported as a "Kvaser Eagle Prototype", you need to
+uninstall the old driver package and then reinstall the new one.
+
+
+New Features and Fixed Problems in V5.0 (Release 04-MAR-2013)
+======================================================================
+
+* t: The included t compiler has version 3.0, see "The Kvaser t Programming 
+       Language" for details.
+     * Errorcode canERR_SCRIPT_WRONG_VERSION is now returned when a script compiled
+       with wrong version of compiler is loaded.
+
+* Added tentative support for USBcan Pro HS/K-Line, MiniPCIe and Blackbird v2
+
+* Minor updates in Kvaser BlackBird Help files
+
+* Fixed GUI representation of active key in WEP.
+
+* canHWTYPE_BAGEL is now deprecated, use canHWTYPE_EAGLE instead.
+
+* Device drivers kcana.sys, kcanc.sys, kcand.sys and kcanp.sys are no
+longer included because the corresponding hardware is obsolete. This
+affects PCcan (ISA bus) and USBcan (the first version from ca. year 2002, 
+P/N 00135-0 and 00134-3). Use CANLIB 4.9 for these devices.
+
+* Installer (kvaser_drivers_setup.exe) can now exit with code 100, this means that
+  "The virtual CAN driver, and/or the network enumerator driver, failed to
+   start. You should restart the computer and run the installation again."
+  The usage for this is in silent mode where you e.g. do the following in a script:
+    [c:\] type run_installer.bat
+    @echo off
+    kvaser_drivers_setup.exe /S
+    echo 'kvaser_drivers_setup.exe /S' returned %ERRORLEVEL%
+
+* Changes and corrections to J2534:
+    * J2534 "raw CAN" traffic now runs more than three times as fast as earlier releases.
+ 
+    * Fixed issue where the J2534 was not properly registered during
+      installation under 64-bit Windows.
+
+    * Fixed an issue where running two instances of J2534 could result in an
+      unhandled exception.
+
+    * J2534 will now accept opening virtual channels (under ISO11898 and
+      ISO15765) when the registry key HKLM\PassThruSupport.04.04\Kvaser
+      CAN\canOPEN_ACCEPT_VIRTUAL is set to non-zero.
+
+    * J2534_ERR_DEVICE_NOT_CONNECTED will now be returned if the device is
+      removed during use under ISO11898 or ISO15765.
+
+    * J2534 fixed bug related to periodic messages, dll could crash when 
+      stopping periodic message. (Expanded the critical section inorder to
+      protect data and pointer) 
+
+* Updated .NET CLS with missing defines for canIOCTL_xxx and canCHANNELDATA_xxx.
+
+* Updated .NET CLS v1.1 to match functionality of .NET CLS v4.0.
+
+* Added vs2005 NET samples.
+
+
+New Features and Fixed Problems in V4.10 (Release 22-JAN-2013)
+======================================================================
+
+* Version 4.10 was released only to an OEM customer.
+
+* kvrLib: 
+  * Fixed bug in kvrWlanGetSecurityText, when passing security_string_size greater than 256.
+  * Default hostname no longer includes '_'.
+  * Old devices needs to be reconfigured with new hostname.
+  * XML version stamp corrected to 4.3
+
+* SDK: 
+  * canlibCLSNET.dll for Framework 4.0 - Updated with more functions
+  * Added .NET CLS compliant wrappers for kvrlib and kvaDbLib and kvmlib.
+  * Added .NET samples Cs_kvrConnect, Cs_kvrConfig and DBdump.
+  * Added information on DLL dependencies in Kvaser CANLIB documentation.
+  
+* t: 
+  * The included t compiler has version 2.1, see "The Kvaser t Programming Language" for details.
+  * Local static variables are now correctly initialized.
+  * Added histogram sample that record data into histogram.
+  * Improved syntax check and error handling in compiler.
+  * Tutil now reports all script errors in listen mode.
+  * Added support to read Customer Data and included a sample.
+     
+* Support added for Customer Data in Eagle.
+
+* Improved printout in Kvaser Customer Data Utility
+
+* Added canIOCTL_TX_INTERVAL (for supported interfaces) to force delays
+  between successive transmits on the CAN bus.
+  
+* Implemented canIOCTL_GET_TXACK
+
+* Added canIOCTL_SET_USB_THROTTLE_SCALED and canIOCTL_GET_USB_THROTTLE_SCALED
+
+* Added sanity check to kcans to prevent BSOD on failing hardware in production 
+
+* Added canCHANNELDATA_REMOTE_MAC and canCHANNELDATA_REMOTE_HOST_NAME to read 
+  MAC address and host name of remote capable devices.
+
+  
+
+New Features and Fixed Problems in V4.9 (Release 07-SEP-2012)
+======================================================================
+
+* kvrlib: Fixed read-out problem when access password length was 28-31 
+  characters.
+
+* canCHANNELDATA_DEVNAME_ASCII will now return a value for all USB 
+  connected devices that supports it.
+
+* Fixed Object Buffer(Auto Transmit) function for Kvaser Eagle, needs
+  Kvaser Eagle firmware v1.4.
+
+* Added CAN traffic encryption configuration to Kvaser Network 
+  Device Selector
+
+* kvrlib: Fixed reporting of mac in kvrWlanGetScanResults for ssid 
+  longer than 18 characters
+
+* Improved restart device procedure after writing parameters from 
+  Kvaser Wireless Configuration on slow machines.
+
+* Several bug fixes in the RP1210 driver.
+
+* kvReadDeviceCustomerData() can now handle USBcan Professional too.
+
+* Various documentation corrections.
+
+* kvrlib: Added functions kvrHostName() and kvrNetworkGetHostName()
+
+* Added support for HostName to Kvaser Network Device Selector
+  and Kvaser Wireless Configuration
+
+
+
+New Features and Fixed Problems in V4.8 (Release 25-MAY-2012)
+======================================================================
+
+* Improved the uninstall behaviour of the Kvaser Network Enumerator 
+  Service.
+
+* Memory leak for remote devices plugged.
+
+* CANlib now supports 64 channels.
+
+* Changes and corrections to kvrlib:
+
+    * The device configuration uses XML format version 4.2, see
+      "Specification of the Kvaser BlackBird XML Format" for details.
+
+    * MTU setting via XML configuration file enabled.
+
+    * Corrected rx/tx rate reporting in kvrNetworkGetConnectionStatus().
+
+    * Added _ERR_ENCRYPTION_PWD as remote device status code.
+    
+    * Added support for configuration profiles in future products.
+    
+    * Added APIs kvrDiscoveryClearDevicesAtExit, kvrConfigInfoGet.
+    
+    * Kvaser Wireless Configuration and Kvaser Network Device Selector now
+      uses kvrlib internally.
+
+* canGetChannelData/REMOTE_OPERATIONAL_MODE returns _NONE for non-remote 
+  devices.
+
+* Added Kvaser Customer Data Utility.
+
+* Improved arithmetic precision when reading FP values from .dbc files.
+
+* Various improvements and bug fixes in the RP1210 and J2534 libraries.
+
+* Various documentation improvements.
+
+
+New Features and Fixed Problems in V4.7 (Release 26-JAN-2012)
+======================================================================
+
+* Added possibility to read operational mode (infrastructure/adhoc) for 
+  remote capable devices. 
+
+* The driver now requires firmware version 1.2 or later for Kvaser Eagle.
+  Older firmware will not work except for upgrading the firmware.
+
+* Fixed that the service could under a certain circumstance leave an inactive
+  remote driver loaded.
+
+* Several changes and corrections to kvrlib:
+
+    * The device configuration uses XML format version 4.1, see
+      "Specification of the Kvaser BlackBird XML Format" for details.
+
+    * Hostname is no longer printed as an XML comment.
+
+    * Device access password is only saved in protected and private mode.
+
+    * Device access password can contain xml entities.
+    
+    * Maximum SSID length increased from 31 to 32 characters.
+
+    * Added kvrServiceState_INSTALLING that informs that a driver is being
+      installed.
+
+* The driver installer now includes the J2534-1 DLLs that were
+  previously distributed with the SDK only. There is also an option of
+  registering the J2534 driver at installation time.
+
+* The driver installer now groups the software in four sections, one
+  of which (the one containing the driver files) is mandatory and the
+  other are optional. We recommend that you use the default choices when
+  installing the drivers.
+
+* The driver installer supports a command-line switch /DISABLE=section[,section]
+  which can be used to turn off installation of optional sections.
+  Currently the following sections are defined: GUI, STARTMENU, J2534. You can
+  also specify ALL to disable installation of all optional sections.
+
+* kvaDbLib: added APIs kvaDbAddNode, kvaDbDeleteNode,
+  kvaDbSetNodeName, kvaDbSetNodeComment, kvaDbAddReceiveNodeToSignal,
+  kvaDbRemoveReceiveNodeFromSignal
+
+
+
+
+
+New Features and Fixed Problems in V4.6a (Release 20-OCT-2011)
+======================================================================
+
+* kvaDbLib: fixed bug introduced in 4.6 where all extended identifiers
+in the database were unreadable.
+
+* Several changes and corrections to kvrlib: 
+
+    * The device configuration uses XML format version 3.0, see
+      "Specification of the Kvaser BlackBird XML Format" for details.
+  
+    * Corrected active WEP key numbering from 0-3 to 1-4 in XML.
+
+    * The device access password is no longer encrypted in the XML file.
+
+    * All WEP keys are now accessible from the API.
+
+    * Use entitys like &lt; to encode and decode XML file.
+
+    * Improved textual description of kvrERR_PASSWORD.
+
+    * Duplicated devices not allowed in the list of configured devices.
+
+    * Fixed multiple kvrGetErrorText() bugs. 
+
+    * Removed canUninitializeLibrary() from kvrConfigOpen().
+
+* setparam_oem.exe: Added firmware version check. Fixed a bug where version
+number was checked on wrong device.
+
+* Kvaser Wireless Configuration: Set the correct key length for WEP64
+and WEP128.
+
+
+New Features and Fixed Problems in V4.6 (Release 16-SEP-2011)
+======================================================================
+
+* Support for Kvaser Eagle (00567-9)
+
+* Support for Kvaser BlackBird SemiPro HS with OBDII connector (00629-4).  
+
+* kvScriptRequestText() and kvScriptGetText() replaced
+  kvDeviceMessagesSubscription() and kvDeviceMessagesRead().
+  
+* Max number of connected devices in service is now 32.
+
+* Added kvScriptUnload().
+
+* SDK: The included t compiler has version 2.0, see "The Kvaser t Programming 
+  Language" for details.
+
+* J2534 driver: Implemented "Mixed mode" as per J2534-2.  
+
+* J2534 driver: Fixed problem where messages with extended identifiers were not
+  correctly reported.
+
+* J2534 driver: Sometimes, when stopping a periodic CAN transmission, a corrupt
+  message would be written to a buffer causing further transmission to stop.
+
+* J2534 driver: Fixed bug where segmented messages could only be sent if they
+  matched the first flow control filter.
+
+* J2534 driver: Fixed bug where transmission of both standard and extended ids
+  were possible although only one of them were selected.
+
+* J2534 driver: It's no longer possible to send segmented periodic messages,
+  which the standard prohibits.
+
+* J2534 driver: Fixed crash when too long periodic messages were sent.
+
+* J2534 driver: Fixed bug where the reception of an iso15765 message with fewer
+  data bytes than 8 caused the ISO15765_PADDDING_ERROR to be reported in a
+  separate message. Now it's set in the received message instead.
+
+* kvrlib: Changed size of kvrDeviceInfo struct in kvrlib.h.
+
+* kvrlib: Added CAN traffic encryption if requested by remote device (Kvaser
+  BlackBird). This is configured in the device via XML settings and the password
+  is also set in kvrlib via kvrDiscoverySetEncryptionKey().
+
+* kvrlib: The device configuration uses XML format version 2.0, see
+  "Specification of the Kvaser BlackBird XML Format" for details.
+  
+* kvrlib: Renamed kvrAddressType_[ALL|BROADCAST|STORED] to
+  kvrAddressTypeFlag_XXX.
+
+* kvrlib: Added functions for handling the service; kvrServiceQuery(), 
+  kvrServiceStart(), kvrServiceStop().
+
+
+New Features and Fixed Problems in V4.5a (Release 05-JUL-2011)
+======================================================================
+
+* Fixed problem with installer that caused the kvenumsrv service
+install to fail randomly.
+
+* New APIs kvScriptUnload, kvFileGetName and kvFileGetCount.
+
+* kvrlib: Improved documentation of APIs kvrDiscoveryStart and
+kvrDeviceInfo.
+
+* kvrlib: Fixed various problems when doing consecutive device
+discoverys.
+
+* kvrlib: Fixed bug where the kvenumsrv hang in state "STARTING".
+
+* kvrlib: Fixed problem where kvrDiscoveryClose returned
+kvrERR_NOT_IMPLEMENTED.
+
+* kvrlib: Fixed problem where kvrDiscoverySetAddresses crashed if
+called twice.
+
+* kvrlib: kvrUnloadLibrary now cleans up better.
+
+
+New Features and Fixed Problems in V4.5 (Release 02-MAY-2011)
+======================================================================
+
+* Added new ioctls for diagnostics of remote devices; 
+  canIOCTL_GET_BUS_TYPE, canIOCTL_GET_CHANNEL_QUALITY, 
+  canIOCTL_GET_ROUNDTRIP_TIME and 
+  canIOCTL_GET_TIME_SINCE_LAST_SEEN.
+  These are also availible in canGetChanneldata();
+  canCHANNELDATA_BUS_TYPE, canCHANNELDATA_CHANNEL_QUALITY,
+  canCHANNELDATA_ROUNDTRIP_TIME and
+  canCHANNELDATA_TIME_SINCE_LAST_SEEN
+
+* Added ioctl and canGetChannelData() to read device name from a remote 
+  device; canIOCTL_GET_DEVNAME_ASCII and canCHANNELDATA_DEVNAME_ASCII.
+
+* Added functions for active ping; kvPingRequest() and kvPingGetLatest().
+
+* Added support for remote BlackBird in 64 bit executables.
+
+* Added support for extended BlackBird connection status (i.e. wrong password)
+  in Kvaser Hardware.
+  
+* Fixed problem where installed DLLs and other system files got an overly 
+  restrictive ACL, thus preventing unprivileged users to use the CAN 
+  drivers. This happened when running the installation package on a machine 
+  where the drivers were already installed, without uninstalling them first.
+
+* Added WM__CANLIB style notification on buson/off change, when the
+  physical channel is taken on/off bus.
+
+* SDK: Documentation facelift.
+
+* Support libraries for Microsoft .NET framework didn't make it into this 
+  release but we expect to make them available on the web site later 
+  in May 2011.
+
+
+New Features and Fixed Problems in V4.4 (Release 20-JAN-2011)
+======================================================================
+
+* Added support for 00581-5 Kvaser Memorator Professional CB
+
+* Added two new ioctls, canIOCTL_SET_ERROR_FRAMES_REPORTING and 
+  canIOCTL_SET_LOCAL_TXECHO.
+
+* "Resource filtering" for lapcan is no longer the default. 
+  This facilitates installation on e.g. Dell E6410 laptops where the
+  driver wouldn't find free I/O space or other resources.
+
+* Improvements in the driver for COTI (CANopen Testing Interface).
+
+
+
+Fixed Problems in V4.3a (Release 2-MAR-2011)
+======================================================================
+
+* Fixed problem where installed DLLs and other system files got an
+  overly restrictive ACL, thus preventing unprivileged users to use the
+  CAN drivers. This happened when running the installation package on a
+  machine where the drivers were already installed, without uninstalling
+  them first.
+
+
+New Features and Fixed Problems in V4.3 (Release 25-NOV-2010)
+======================================================================
+
+* Tentative support for Kvaser Eagle. Details may still change.
+
+* Support for Kvaser Memorator R SemiPro and Kvaser USBcan R.
+
+* A library for reading CANdb files is included. See the sample code
+  in Samples\candb. API documentation is in the CANLIB help file.
+
+* A driver for COTI (CANopen Testing Interface) is included.
+  See http://www.can-cia.de/index.php?id=conformance for more information.
+
+* 64-bit versions of linlib.dll and j1587lib.dll are included.
+
+* Users of Dell Latitude 6410 laptops together with LAPcan might need to
+  run PcmciaIrqRouteToPciController.reg and lapcan_resource_filter.js.
+
+* Fixed a bug where canReadSpecific would leave a "ghost message" in the
+  queue. Further calls to canRead would return canERR_NOMSG but when
+  reading the queue level, 1 would be returned.
+
+* canlibCLSNET.dll: when using canIoCtl to get the EAN number, the DLL
+  now returns an unsigned 64-bit integer that contains the EAN,
+  BCD-coded in a hex string. Earlier version always returned an error
+  code.
+
+* filo_setparam_userdata.exe: Fixed hex number parsing bug for
+  the -data argument.
+
+* kcanl.sys: Fixed missing "break" that would cause the autotransmit
+  buffers to misbehave if the user parameters were read.
+
+
+
+New Features and Fixed Problems in V4.2 (Release 15-OCT-2009)
+======================================================================
+
+* This driver version is needed to use Kvaser Memorator Light.
+
+* linlib.dll now exports the linGetCanHandle, linSetupIllegalMessage
+  and linSetupLIN APIs properly (without "name mangling")
+
+
+
+New Features and Fixed Problems in V4.1a (Release 1-JUN-2009)
+======================================================================
+
+* IMPORTANT for Kvaser Blackbird setup program: In this release
+  changes were made that will require at least firmware 1.9.950. Older
+  Blackbird firmware will not work. Also note that old configurations
+  can not be read into the setup program. You must recreate the
+  configurations.
+
+* Kvaser Blackbird setup program: New channel selection user
+  interface. The "automatic" choice is now replaced by "Search all
+  channels".
+
+* Kvaser Blackbird setup program: Added China as a regulatory domain. 
+
+* Kvaser BlackBird: communication protocol slightly changed to improve
+  both latency and throughput.
+
+* (General) Fixed bug where the value returned by
+  canIOCTL_GET_TIMER_SCALE was wrong unless it was first set by a call
+  to canIOCTL_SET_TIMER_SCALE.  (#1693)
+
+* (General) Fixed problem where the length of the outstanding transmit
+  queue was incorrectly calculated, causing an overflow after sending
+  more than 10240 messages without calling any other API than canWrite.
+  (#1380)
+
+* Support for OEM products 00527-3, 00536-5 and 00541-9.
+
+
+New Features and Fixed Problems in V4.1 (Release 5-MAR-2009)
+======================================================================
+
+* Support for Kvaser Memorator Light and several new Kvaser Leaf types.
+
+* Kvaser Blackbird: The setup tool now allows for using WPA2 when
+  connecting to access points configured for both WPA and WPA2.
+
+
+New Features and Fixed Problems in V4.0e (Release 14-NOV-2008)
+======================================================================
+
+* All PCI boards: Fixed a problem that prevented computer shutdown at
+  certain occasion. The computer would just ignore shutdown, hang, or
+  even crash during a regular system shutdown.
+
+
+New Features and Fixed Problems in V4.0d (Release 4-SEP-2008)
+======================================================================
+
+* Fixed a problem where the channel assignments (for Vector CANalyzer)
+  were not writable from Kvaser Hardware.
+
+* Fixed problem with registry protection on certain keys in 64-bit Vista.
+  This caused problems with the proxy driver that Kvaser BlackBird uses.
+
+
+
+New Features and Fixed Problems in V4.0c (Release 8-JUL-2008)
+======================================================================
+
+* Compared to 4.0b, this release contains no changes visible to the
+  end users - only changes to certain manufacturing software are made.
+
+
+
+New Features and Fixed Problems in V4.0b (Release 27-MAY-2008)
+======================================================================
+
+* Kvaser BlackBird support: Fixed a problem with Kvaser Network Setup
+  and the enumeration service (used for Kvaser BlackBird) where a
+  registry key sometimes got a too restrictive protection.  This caused
+  the Network Setup to fail updating the list of BlackBirds on the
+  network and that would prohibit connections from the service to the
+  BlackBird.
+
+* Kvaser BlackBird support: Kvaser Network Setup will now issue an error
+  message if the registry keys we just mentioned cannot be written.
+
+* canlib32.dll: Added a missing DeleteCriticalSection when the DLL
+  unloads to balance the InitCriticalSection which is called when the
+  DLL initializes.
+
+* RP1210 support: Added GetLastErrorMsg and ReadDetailedVersion calls.
+  Added BlackBird support.
+
+* canlib32NET.dll, canlibCLSNET.dll: Added a strong name to the
+  assembly.
+
+* Kvaser BlackBird support: the parameter setter program now allows
+  access to the built-in web server to be configured.
+
+
+
+New Features and Fixed Problems in V4.0a (Release 20-APR-2008)
+======================================================================
+
+* Added support for Kvaser BlackBird.
+
+* Fixed bug in canWaitForEvent that happened in 64-bit Windows only,
+  although it was probably present also in Win32
+
+* J2534 library: 1. Implemented timestamps for TxDone-indications. 2.
+  Implemented ExtraDataIndex for all messages and indications. 3. Return
+  correct value of read messages when reading fails.
+
+* SDK: Added J1699/3 test application from Sourceforge; see
+  samples/J1699 Added a fix in VerifyBatteryVoltage so it can handle the
+  case when READ_VBATT isn't supported.
+
+* Restored support for PCIcan/PCIcanx with Kone transceivers.
+
+
+
+New Features and Fixed Problems in V4.0 (Release 2-FEB-2008)
+======================================================================
+
+* Kvaser Leaf, OEM versions: Fixed a BSOD in the driver when a certain
+  third party software (for whiteboards) was installed on the same
+  machine.
+
+* SDK: Several small documentation improvements
+
+* RP1210: Support for changing the baud rate on the ClientConnect call.
+
+* RP1210: Added the ability to remove the "Serial=" in the DeviceParams
+  line of a Device Block.  If a serial number is not provided in this
+  line, the first channel that matches the hardware type and the
+  required “Chan=” value is assigned to the device id.
+
+* RP1210: Added the ability to define a baud rate on the DeviceParams
+  line of the Device Block.  This allows legacy rp1210A code to use a
+  baud rate other than 250.
+
+* RP1210: Updated the INI file to have comments and match the latest
+  RP1210B specification.
+
+* For RP1210B please note: ReadDetailedVersion(), GetLastErrorMsg(),
+  Set Broadcast List command are yet not supported
+
+* J1587: The library functions j1587WriteMessageWait() and
+  j1587ReadMessageWait() are rewritten to avoid losing incomming
+  messages on a channel used for both reading and writing.
+
+* The J1587 library has a new implementation that is more robust and
+  should eliminate the certain timeout errors seen in the previous
+  release.
+
+* Corrected typo in INF files that could cause the PCI104 to get wrong
+  driver when installed.
+
+
+
+New Features and Fixed Problems in V4.0 (BETA release 6-NOV-2007)
+======================================================================
+
+* Memorator Professional: fixed a problem where connecting to a device
+  where a totally blank flash disk was inserted would fail with error
+  -37, "Device communication error".
+
+* PCIcan II, PCIcanx II: Fixed bug in DPRAM handling that could cause
+  crashes on 64-bit Windows.
+
+* PCIcan, PCIcanx: fixed a driver cleanup issue that would cause the
+  Driver Verifier to fail because a timer wasn't propery cancelled.
+
+* All drivers: fixed memory leak of 112 bytes.
+
+
+
+New Features and Fixed Problems in V4.0 (BETA release 19-OCT-2007)
+======================================================================
+
+* The new ioctl canIOCTL_SET_BUSON_TIME_AUTO_RESET now works properly.
+
+* Fixed kvifTimeDomainAddHandle() so it copies the right timer offset to
+  the newly added handle. Previous code didn't copy the timer offset at
+  all.
+
+* The C++Builder sample is now built with RAD Studio 2007.
+
+* J2534 DLLs now handle long installation paths. Improved performance
+  when sending messages using the CAN protocol.
+
+* Driver installation INF files are now Unicode to support device
+  names with e.g. Chinese characters. Such device names are now
+  displayed correctly in 'Kvaser Hardware' and similar programs.
+
+* Added support for new devices; Kvaser Memorator Professional HS/LS and
+  Kvaser Leaf p/n 435-1.
+
+
+
+New Features and Fixed Problems in V4.0 (BETA release 1-OCT-2007)
+======================================================================
+
+* This SDK and driver version is now called 4.0. Version 3.9a was never
+released.
+
+* SDK - RP1210 library changes: Added a timeout error code.  Blocking is no
+longer always Infinite.  Changed many things in the methods used for
+thread synchronization to handle the new command which allows the user
+to set the wait time associated with a Blocking call.  Command for
+setting the wait time also added.
+
+* Fixed blue screen when using vcand32.dll in Win64.
+
+* Fixed problem with the notification event in Win64. Applications
+that obtained a handle with canIOCTL_GET_EVENTHANDLE and tried to wait
+on it would fail.
+
+* Fixed bug where the TxThreadPrio and FRxThreadPrio registry settings
+weren't used (instead RxThreadPrio was always used). This change will
+likely not affect neither the end user nor the application developer,
+as these parameters were undocumented anyway.
+
+* Several parameters in the registry has been moved from
+HKLM\Software\Kvaser AB\CANDrivers 1.0 to
+HKLM\System\CurrentControlSet\<drivername> in order to make them
+available at boot time. Several unused parameters were removed. This
+change will likely not affect neither the end user nor the application
+developer, as these parameters were undocumented anyway.
+
+* SDK - The SDK now includes the j1587lib.h file needed to build the
+J1587 sample.
+
+* SDK - Added new APIs kvGetSupportedInterfaceInfo, kvReadTimer,
+kvReadTimer64.
+
+* Improved robustness in PCIcan (PCIcanx) driver when reading serial
+number and EAN code from the Dallas memory.
+
+* SDK - Added tentative type definition macros in predef.h for coping
+with 64-bit ints on different platforms, and also alleviate the
+int/long confusion in canlib.h. Right now only the 64-bit int macro is
+used in canlib.h.
+
+* (General driver) Allow setting the bit rate if we have init access,
+even if someone else is on-bus on the same channel. The same logic is
+now applied in VCAN_IOCTL_SET_BITRATE too.
+
+* SDK - Added support for supressing the clock "reset" in canBusOn()
+(ioctl canIOCTL_SET_BUSON_TIME_AUTO_RESET). 
+
+
+
+New Features and Fixed Problems in V3.9b (Release 10-MAR-2008)
+======================================================================
+
+* Fixed two problems in the USB routines that caused BSOD in Windows
+  98 together with a Kvaser Leaf.
+
+* Version 3.9a was internal only and was never released.
+
+
+New Features and Fixed Problems in V3.9a (BETA release 11-JUN-2007)
+======================================================================
+
+* Support for 64-bit (x64 architecture) drivers on Windows XP x64 and
+  Vista x64. The 64-bit drivers are still beta quality.
+
+* The setup program for W2K, XP, W3K, and Vista has been rewritten.
+
+* The driver setup package now includes 64-bit drivers. The driver
+  type (32/64 bits) is selected automatically.
+
+* SDK: 64-bit import libs are included. Documentation and samples are
+  lacking, but a 32-bit program should be recompilable as 64-bit without
+  any (canlib-related) changes.
+
+* The drivers are now signed.
+
+* Fixed "Kvaser Hardware" control panel applet aesthetical issues in Vista
+
+* J1587 library: The j1587SetupJ1587() API is renamed to j1587Configure()
+
+
+
+New Features and Fixed Problems in V3.9a (BETA release 11-APR-2007)
+======================================================================
+
+* Support for Kvaser PCIEcan (PCI Express)
+
+* Support for Kvaser Leaf Light GI and Kvaser Leaf Professional
+  with ODB cable.
+
+* The drivers have been tested with (32-bit) Windows Vista and are
+  functional without any known issues. There is at present no support
+  for 64-bit Vista or XP.
+
+* (SDK) Support libraries for SAE J2534 are included.
+
+* (SDK) Sing32.dll - Fixed timer handling so CANPC_get_time() reads
+  the time from the CAN hardware interface instead of from the PC.
+
+* (SDK) Support libraries for SAE J1587 (to be used with Kvaser Linx)
+  are included are but unfortunately only sparsely documented for the
+  moment.
+
+* (SDK) A Python sample is included.
+
+* (SDK) linlib.dll - Fixed system timer reading for SMP systems.
+
+* (SDK) canlibCLSNET.dll - Fixed bug in canReadWait wrapper where the
+  CAN identifier wasn't returned to the caller.
+
+* (SDK) Added example of managed C++ code (see samples\CANdump_CLR_VS2005)
+
+* LAPcan/LAPcan II driver: A timeout has been increased to avoid
+  problems when multiple (several hundred) calls to
+  canOpenChannel/canClose were executed.
+
+* (RP1210 DLL) Improved support for RP1210B. Implemented
+  GetHardwareStatus() except for the physical device disconnection which
+  still needs to be done.
+
+
+
+New Features and Fixed Problems in V3.9 (Release 5-NOV-2006)
+======================================================================
+
+* Support for several new devices: PCIcanx, PCIcanx II, PC104+, 
+  Memorator Professional, USBcan Professional.
+
+* The drivers have been tentatively tested on Windows Vista RC1
+  (build 5600) and RC2 and are functional without any known issues. 
+  They will be more thoroughly tested before Vista is released. Please 
+  contact us if you experience any problems when using the drivers on 
+  Windows Vista.
+
+* (PCIcan II, PCIcanx II, PC104+) Bus on and bus off now waits for a
+  response from the card before returning to the caller, to bring the
+  code in line with USBcan II and the Leafs.
+
+* (All devices) Fixed bug in kvalapw2.dll where increasing the queue
+  size using canIoCtl with code canIOCTL_SET_RX_QUEUE_SIZE didn't cause
+  the look-aside queue in the DLL to grow, thus causing silent loss of
+  messages if the queue size was changed _and_ certain canlib API calls
+  (e.g. canReadStatus) were made.
+
+* (RP1210A DLL) Corrected Read message lockup due to failure to empty
+  receive buffer after CAN event received.
+
+* (Driver installation) The program that cleans up the registry from
+  old, unused entries related to driver installation has been corrected
+  to handle a rare situation where certain keys couldn't be removed
+  because of strict protection.
+
+* canGetBusParams() now returns the bus parameters actually set in the
+  hardware (earlier it just returned a copy of the latest parameters set
+  on this handle).
+
+* New APIs for time synchronization: kvTimeDomainCreate, kvTimeDomainDelete,
+  kvTimeDomainResetTime, kvTimeDomainGetData, kvTimeDomainAddHandle,
+  kvTimeDomainRemoveHandle.
+
+* New APIs kvSetNotifyCallback, canGetBusStatistics,
+  canRequestBusStatistics, canRequestChipStatus, kvFlashLeds, kvBeep are
+  implemented but are not yet documented.
+
+* "Kvaser Hardware" has been modified to make channel assignment
+  more easy to use.
+
+* The RP1210 DLL is now included in the SDK.
+
+* kvaser_vcndrvms.dll (only for CANalyzer/CANoe): suppress the next
+  bus-off message reported by the card after a busoff has been requested
+  by the program. This prevents an infinite loop in CANalyzer 5.2 if a
+  CAPL OnBusOff handler calls canReset.
+
+* LINLIB: linInitializeLibrary may now safely be called multiple times.
+
+* New API kvSetNotifyCallback.
+
+* Fixed bug that appeared in CANalyzer 5.2 with LIN and CAN channels.
+ "Time jump in simulation".
+
+* Several changes to sing32.dll:
+  o Modified channel enumeration so there's now a special mode where
+    the LIN channels are enumerated but not used, and a standard mode
+    where the LIN channels are neither used nor enumerated.
+
+  o Disrecard the LIN channels (identified by transceiver type 19 at
+    startup time) when enumerating the channels.
+
+  o CANPC_set_output_control can now handle silent mode (0x03) as well
+    as normal mode (0xFF and 0x60).
+
+  o Removed the hardware type checking, so new hardware types will be
+    automatically supported. Specifically the Leafs are now supported.
+
+* canlibCLSNET.dll: corrected canIoCtl calls canIOCTL_SET_TIMER_SCALE,
+  canIOCTL_SET_TX_TXACK, canIOCTL_SET_TXRQ,
+  canIOCTL_SET_REPORT_ACCESS_ERRORS. Corrected DLC checking in canWrite
+  and canRead calls (wouldn't accept DLC>8).
+
+* New sample: Samples/joystick
+
+* Improved sample: Samples/ShowStatus
+
+
+
+New Features and Fixed Problems in V3.8a  (Released 19-NOV-2005)
+======================================================================
+
+* Fixed a crash that happened on certain Dell computers. When the
+  computer was connected to a docking station, it could crash if if was
+  suspended and then resumed.
+
+
+
+New Features and Fixed Problems in V3.8  (Released 11-AUG-2005)
+======================================================================
+
+* Support for the new Kvaser Leaf family. Currently supported devices
+  are Professional, SemiPro and Light, in their HS, LS and SWC variants;
+  and also the Kvaser Leaf LIN variants. NOTE: the firmware revision
+  must be at least 1.1.
+
+* Improved stability on multiprocessor machines (including machines
+  with hyperthreaded CPUs)
+
+* Enhanced stability when unplugging a device with CAN traffic.
+  This also improves driver stability when unplugging a Memorator in 
+  configuration mode.
+
+* Fixed bug that happened if two or more handles were open on the same
+  channel. If one the handles were closed, the other handles would
+  have their receive and transmit queues flushed.
+
+* Fixed bug in LAPcan driver that caused the card to go on-bus if the
+  transmit queue was flushed when the channel was off-bus.
+
+* Fixed pesky bug introduced in 3.7a that caused W98 to crash or hang
+  at shutdown or when going to sleep or standby.
+
+* The "CAN Hardware" applet in the Control Panel is completely
+  rewritten and greatly enhanced. It is now known as "Kvaser Hardware".
+
+* canReadTimer() now reads the hardware clock instead of the PC clock.
+
+* Speeded up channel enumeration. Applications using CANLIB should
+  now start a bit faster.
+
+* The Kvaser Leafs (LS types) will now report NERR also when detected
+  during transmission.
+
+* Fixed bug where the computer crashed if it was put to sleep and
+  LAPcan was removed during the sleep.
+
+* Several fixes to power-down modes (especially LAPcan, USBcan II users
+  will appreciate this)
+
+* Fixed a problem with transceiver type reporting for LAPcan.
+
+* USBcan II and Kvaser Leaf drivers will now retry their USB I/O in the
+  rare case of a bus disturbance. This improves the robustness in
+  harsh environments.
+
+* The priority of the kernel thread that handles USB can now be
+  adjusted. This can be useful for special applications - contact us for
+  more informnation.
+
+* Installation: kcanc.sys is not installed anymore. It was used for
+  the now deceased Kvaser Creator. If you need it, please contact us.
+
+* Installation: the cleanup option during the driver installation was
+  superfluous and has been removed. Use the standalone cleanup.exe
+  instead.
+
+* Installation: Fixed problem in cleanup.exe which could cause it to
+  hang under Windows 98.
+
+* SDK: Added constants canBITRATE_xxx as replacement for BAUD_xxx.
+  The latter are still defined in canlib.h but should be considered
+  obsolete.
+
+* SDK: linlib now opens its channels with init access to preclude
+  simultaneous opening of handles to the same channels from the other
+  CANLIB APIs.
+
+* SDK: linlib is now thread safe.
+
+* SDK: New APIs kvFlashLed, canFlushReceiveQueue, canFlushTransmitQueue,
+  canGetBusStatistics, canRequestBusStatistics
+
+* SDK: new status code canERR_NOT_IMPLEMENTED
+
+* SDK: canGetVersionEx has got two new item codes.
+
+* SDK: New sample (Samples\ParamFunctions) that demonstrates how to
+  use the canParamXXX functions.
+
+* SDK: canParamXXX() will now create their registry key if it doesn't exist
+
+* SDK: There are now Microsoft Developer Studio and Borland C++
+  Builder projects for many of the sample programs.
+
+* SDK: Interface files for Visual Basic (VB6 and .NET), Delphi, and C#
+  are updated.
+
+* SDK: all samples are reviewed and spruced up where needed.
+
+* SDK: Misc fixes to the documentation.
+
+* SDK: canlib32.dll no longer uses a data area shared between all
+  applications that use this DLL. This means that the channel list an
+  application sees is built once, namely when the DLL loads. If you
+  want to refresh it, use canUnloadLibrary() and canInitializeLibrary().
+
+* SDK: canIoCtl has two new item codes, canIOCTL_SET_USB_THROTTLE and
+  canIOCTL_GET_USB_THROTTLE, that can be used by applications to tweak the
+  responsiveness vs. CPU load for the Leafs.
+
+* SDK: the documentation on canWaitForEvent() has been clarified,
+
+* linlib: Added LinStatus.linERR_VERSION.
+
+* linlib: linSetupIllegalMessage() and linSetupLIN() verifies the
+  firmware version and that the cable is on bus.
+
+* linlib: support for LIN 2.0, if the latest firmware for the DRVlin is used.
+
+* SDK: Added the ability to send a message burst using two auto tx
+  buffers. There's now a canlib API for that.
+
+* SDK: Auto tx buffers for PCIcan II, USBcan II, Kvaser Leaf.  See
+  canObjBufSetPeriod().
+
+* SDK: Fixed bug in 3.7 where the Borland import libraries were built
+  to cause "import by ordinal" instead of "import by name"; the latter
+  being standard in Win32. If you use Borland's compilers, you should
+  relink your applications using the import library provided in this
+  release of CANLIB SDK.
+
+* SDK: On popular demand, implemented missing APIs
+  ncdAddAcceptanceRange(), ncdRemoveAcceptanceRange(), and
+  ncdResetAcceptance() in the Vector compatibility library.
+
+* SDK: Softing compatibility library sing32.dll now reports error frames
+  (CANPC_read_ac() returns 15) and NERR and WAKEUP flags
+  (param->Bus_state contains 0x100 resp. 0x200)
+
+* SDK: Delphi code (can.pas): added missing CAN message flags.
+
+
+
+
+New Features and Fixed Problems in V3.7a  (Released 29-DEC-2004)
+======================================================================
+
+* Fixed two problems related to power saving modes: one causing a
+  blue screen in the LAPcan driver that happened when the computer was
+  awakened from standby, and another one that happened with the USBcan
+  II driver when the computer was taken to standby mode.
+
+
+
+
+New Features and Fixed Problems in V3.7  (Released 1-OCT-2004)
+======================================================================
+
+* PCIcan II users: note that this driver release REQUIRES at least
+  firmware version 2.4.
+
+* Fixed problem in cleanup.exe (the driver removal program). Previous
+  versions would not completely remove all driver registration entries
+  in the Registry.
+
+* Fixed problem where sending an error frame on LAPcan/LAPcan II
+  would confuse the transmission counter in kvalapw2.dll, so subsequent
+  calls to canWriteSync() would time out.
+
+* The drivers for USBcan II and friends, PCIcan II, PCIcan, and the
+  virtual CAN bus now handles DLCs up to 15, which is allowed in the
+  latest CAN standard. You need to pass the canOPEN_ALLOW_LARGE_DLC
+  flag to canOpenChannel if you plan to use DLCs larger than 8.
+
+* The DLLs needed for .NET programs are now included in CANLIB SDK.
+
+* "CAN Hardware" - the Hardware Info button now identifies PCIcan II
+  properly.
+
+* Under NT4, the virtual CAN bus is now installed with two channels as
+  standard instead of 4.
+
+* Fix support for one-channel PCIcan II boards under NT4.
+
+* Fixed the installation of the old Vector-replacing drivers for NT4.
+  Previous versions (back to 3.3) didn't setup the registry correct so
+  "CAN Hardware" didn't display any channels at all.
+
+* The drivers have been tested on Windows Server 2003 (yes, they work
+  too!) 
+
+* sing32.dll now implements CANPC_get_serial_number().
+
+* PCIcan II: The driver now reports the EAN number correctly to the
+  application.
+
+* USBcan II, USBcan Rugged, PCIcan II, Kvaser Memorator:
+  Support for larger parameter area in the firmware. This is of interest
+  only for special software, because the parameters are read
+  from the firmware with the same mechanism as earlier.
+
+* Added LIN support (use linlib.h, linlib.dll) and a LIN sample program
+  (look in samples\LIN.) Online help is also updated with documentation
+  on the LIN API calls.
+
+* Support for OEM driver routines.
+
+* Improved support for .NET
+
+* Added C++ wrapper, see Samples\cplusplus
+
+* Memorator driver (kcane.sys) can now report whether a flash disk is
+  present in the Memorator or not.
+
+* PCIcan: Fixed bug where the message being currently transmitted
+  could be overwritten by the next message, thereby corrupting the TX
+  Acks.  This eventually resulted in canWriteSync() returning
+  canERR_TIMEOUT despite the fact that all messages were transmitted
+  correctly.
+
+* Added support for SWC transceivers in USBcan II. 
+
+* Ensured (for all drivers) that if settings bus parameters fails,
+  the status is propagated back to the application.
+
+* bittime.exe: Improved help text. Ensured the entered clock
+  frequency is really divided by 2 before it's used in the
+  calculations. Added command-line switch -pNN to set an upper limit on
+  the prescaler (useful for M16C). Added more tolerances to the popup
+  menu.
+
+* This version supports the new Kvaser Memorator setup program.
+
+
+
+Changes since 3.6 Release Candidate 1 (21-OCT-2003)
+==========================================================================
+
+* C# sample corrected.
+
+
+New Features and Fixed Problems in V3.6 (9-NOV-2003)
+==========================================================================
+
+* Install programs are made more robust.
+
+* We provide a separate program, cleanup.exe, to completely remove
+the drivers.
+
+* Listchannels sample: Now unload & reload DLL when populating the
+channel list, so new or removed devices are taken into account.
+
+* New API, canSetAcceptanceFilter, that provides the same
+functionality as canAccept but is more convenient to use.
+
+* New API, canUnloadLibrary, that un-initializes the library and
+unload the DLL(s) it has loaded. Useful for those who are loading
+canlib32.dll dynamically and want to unload it as well.
+
+* Fixed memory leak in kvalapw2.dll (it was a leak only when
+canUnloadLibrary was called).
+
+* All drivers: increased max RX queue size to 512 K messages. The
+default queue size is unchanged.
+
+* Samples/VB5_32/PROJECT1.VBP: Removed references to unneeded
+components (VB5 left-over) Changed the path to canlib32.bas so that
+the VB5 example will work out of the box.
+
+* canlib_install.dll: New DLL to help the installation programs with
+a few tasks.
+
+* New API, canProbeVersion, to facilitate driver version checking.
+
+* New API, canResetBus, that is a combination of canBusOn and canBusOff.
+
+* New API, canWriteWait, that is a combination of canWrite and
+canWriteSync.
+
+* For the Vector-compatible (Vector-replacing) drivers, duplicate
+driver information in HKLM\Software\Vector branch in registry. This
+is so software using Vector's original vcand32.dll can continue to
+run (e.g INCA)
+
+* Fixed bug in ncdReceive() in vcand32.dll, vcndrvms.dll et al.  Old
+implementation read only one message and returned wrong status code
+when the queue was empty. 
+
+* Transmit and receive queues are now always explicitly flushed when
+canBusOff() is called. (PR#004)
+
+* Added new ioctl codes, canIOCTL_SET_BUFFER_WRAPAROUND_MODE which
+sets the handle is is operating on in "discard oldest message first"
+mode, and canIOCTL_SET_RX_QUEUE_SIZE, to set the size of the recive
+buffer.  canIOCTL_SET_BUFFER_WRAPAROUND_MODE is intended for
+a customer specific application and is not documented.
+
+* Samples/CSharp: C# sample. 
+
+* All SDK documentation is now in the help file, canlib.chm. The PDF
+file is removed from the SDK.
+
+* "CAN Hardware" now displays "USBcanII/Memorator" and "LAPcan/
+LAPcanII" instead of USBcanII and LAPcan respectively.
+
+* "CAN Hardware" now displays low-level driver version number in
+"Hardware Info".
+
+* Fixed issue where the bit rates written to the registry by
+vcanconf.exe were written in the wrong place. Caused problems with
+Vector's DIAdem driver.
+
+* PCIcan support for DNopto piggybacks. They do work with earlier
+drivers but they are then identified as standard 251 drivers.
+
+* vcndrvms.dll: If we can't open the channel with init access, retry
+without.  This is so people can run CANalyzer/CANoe/CANape on the
+same channel.
+
+* vcndrvms.dll: Optimized performance so the CANalyzer and friends
+start faster
+
+* vcndrvms.dll: Suppress TXACKs for error frames as they shouldn't be
+reported to the CANalyzer and friends. Added more transceiver types
+and improved code to handle them.
+
+* USBcan II, PCIcan II: Fixed error frame statistics reporting - the
+previously reported count was doubled because we hear the error
+frames we transmit. So now we don't count the transmitted error
+frames.
+
+* Added a Javascript to enable/disable the kcanc driver.
+
+* kcanc driver ("Simulated CAN bus") is now disabled by default. It's
+still installed. This driver was only used by Kvaser Creator.
+
+* PCIcan II now use the same error frame handling as USBcan II.
+
+* All drivers now check the return status after trying to set the bit
+rate.
+
+* USBcan II, PCIcan II: Improved error frame and chip state reporting
+- previous code was not entirely correct.
+
+* USBcan II, PCIcan II: Added sanity check for bus parameter
+settings. Attempts to set the prescaler to a larger value than 16
+will return an error code instead of silently fail.
+
+* (vcndrvms.dll) fixed version number reporting so CANalyzer can get
+the correct version number.
+
+* (vcand32.dll) Added debug code - the debug version of the DLL will
+now be much more talkative if dbgview is running.
+
+* PCIcan: corrected handling of 1054 piggybacks; previous version
+would hang in the interrupt service routine (which would eventually
+timeout) if NERR was active at startup time. The card would then not
+communicate.
+
+* PCIcan II: fixed bug in kcans.sys where the driver crashed if the
+BIOS allocated address 0 to the card (or memory mapping failed).  
+
+* PCIcan II: Fixed problem where the drivers bgtask wasn't stopped if
+the driver unloaded when helios_probe was running, so causing a
+driver crash during computer boot-up.
+
+* SDK: Added new bit rate constant, BAUD_83K, for 83333 bps.
+
+* SDK: Added gcc to the list of supported compilers.
+
+* PCIcan: Added more piggyback types to handle e.g. SWC Opto and 1054
+Opto. 
+
+* PCIcan: Support for Kone piggybacks are now in the regular driver -
+requires correctly programmed piggys of course.
+
+* Samples/ListChannels: New sample that lists all available
+channels and detailed channel info.
+
+* Samples/bittime: New sample that lists the available bus parameters
+for a given bit rate.
+
+* canlib.chm: Added documentation on the object buffers.
+
+* SDK: New item codes for canGetChannelData:
+    canCHANNELDATA_DRIVER_FILE_VERSION    
+    canCHANNELDATA_DRIVER_PRODUCT_VERSION 
+    canCHANNELDATA_MFGNAME_UNICODE        
+    canCHANNELDATA_MFGNAME_ASCII          
+    canCHANNELDATA_DEVDESCR_UNICODE       
+    canCHANNELDATA_DEVDESCR_ASCII         
+
+* LAPcan, LAPcan II: fixed bug in PnP handling where the LAPcan
+driver filtered its resource requirement in such a way that the end
+user couldn't change its base address.
+
+* Implemented missing API canGetDriverMode()
+
+
+
+New Features and Fixed Problems in V3.5 (20-MAY-2003)
+=====================================================
+
+* USBcan II, Rugged; Kvaser Memorator; PCIcan II: fixed seldom
+occuring race condition that caused lost messages, typically when
+transmitting.
+
+* PCIcan II: now use 32-bit pointers in the DPRAM. Firmware 2.1 is
+now required; older firmware will not work.
+
+* USBcan II, Rugged; Kvaser Memorator; PCIcan II: Fixed bug where one
+statistics event was lost if two such events were requested
+simultaneously.
+
+
+
+New Features and Fixed Problems in V3.4 (12-MAY-2003)
+=====================================================
+
+* IMPORTANT: PCIcan II, USBcan II/Rugged, Memorator: this driver
+release REQUIRES firmware 2.0 or later.
+
+* Installation program now tries harder to remove old registry
+entries when installing on top of a 3.2 or older release.
+
+* PCIcan II, USBcan II/Rugged, Memorator now uses time stamps
+generated by the firmware instead of using driver-generated times.
+
+* PCIcan II, USBcan II/Rugged, Memorator now uses bus load figures
+generated by the firmware instead of using a driver-generated
+approximation.
+
+* PCIcan II, USBcan II/Rugged, Memorator: support for periodic timer
+events from the card - needed by CANalyzer
+
+* This release supports CANalyzer, CANoe, and other fine products
+from Vector Informatik, Germany. You will need a new CYN/COE (4.1
+plus service pack)
+
+* Memorator: will now refuse to go on-bus in CONFIG mode. Previous
+versions would happily go on-bus but things didn't work very well
+after that. Now CANLIB APIs like canBusOn() will return 'Access
+denied'.
+
+* USBcan II driver now properly cancels pending I/O operations before
+unloading. Prevents many a blue screen.
+
+* "USBcan Rev B" is now known as "USBcan Rugged".
+
+* Improved synchronization between PC and LAPcan clocks - previous
+code would perform a slightly inaccurate division on certain
+hardware platforms. Now the math is correct and the clocks
+are more synchronous.
+
+* Support for TxRequests on  PCIcan II, USBcan II/Rugged, Memorator.
+
+* Installer now partly sets up channel mappings for CANalyzer/CANoe.
+Channel mappings are back in kcanconf.exe, too.
+
+* Added item code to canGetChannelData() API for getting status of
+time synchronization.
+
+* PCIcan II, USBcan II/Rugged, Memorator: support for transmitting
+error frames. Also corrected bug that probably could cause the driver
+to crash when receiving error frames in the one-channel version.
+
+* kcanconf.exe, certain DLLs: Improved performanced in
+canio_open_channel() - previous code could take a loooong time to
+execute under Windows 98
+
+* PCIcan II, USBcan II/Rugged, Memorator: fixed bugs in transceiver
+type reporting.
+
+
+
+
+New Features and Fixed Problems in V3.3a (16-FEB-2003)
+======================================================
+
+    * Changes to the NT4 installation program to bring it in line
+      with the other installation programs in 3.3 (the NT4 installation
+      package was never released together with the other 3.3 files.)
+
+    * Improved one error message in LAPcan, PCcan, and PCIcan drivers
+
+    * NO other changes.
+
+
+
+New Features and Fixed Problems in V3.3 (February 2003)
+=======================================================
+
+    * Support for USBcan II, Kvaser Memorator, USBcan Rugged (=USBcan Rev. B),
+      PCIcan II.
+
+    * Disk read speed for Memorator improved 10 times. Needs f/w
+      1.6 or later.
+
+    * USBcan II driver fixed to not unload before the threads exit,
+      and also cancel outstanding I/O
+
+    * New installation program
+
+    * Two driver packages, one that is Vector-compatible and one that is not.
+
+    * Added item codes to canGetChannelData() to retrieve transceiver type,
+      device physical position, and UI number
+
+    * Simulated bus driver for Kvaser Creator (kcanc.sys)
+
+    * LAPcan/LAPcan II: the I/O address will now be allocated in the 0 - 0x3ff
+      address range by default, to handle a lockup problem that happened on some
+      newer laptops.
+
+    * LAPcan report hardcoded built-in capabilites instead of those that the
+      card is telling us
+
+    * Fixed bug where LAPcan's interrupt routine hang if an error was detected -
+      could happen when programming the firmware
+
+    * New Visual Basic sample fragment that demonstrates how to use canSetNotify()
+
+    * USBcan II: Improved the checks for validity of the response from the device,
+      to increase driver stability
+
+    * Tentative support for Aurora
+
+
+
+New Features and Fixed Problems in V3.2 (June 2002)
+=======================================================
+
+    * Tentative support for PCIcan II and USBcan II.
+
+    * Bus statistics now calculated in driver for hardware that
+      doesn't support it.
+
+    * Added a couple of new sample programs.
+
+    * Import libs (e.g. canlib32.lib) should now be compatible with
+      both Visual C++ 5.0 and 6.0.
+
+    * Fixed canSetNotify bug where all types of events were sent to
+      the receivers regardless of the notification mask they had set
+
+    * Now report PCcan, PCIcan, PCIcan II as non-removable devices
+      to the OS. 
+
+    * Incremented file version numbers to 4.10.
+
+    * Update handle-specific data better. This probably caused
+      canReadStatus() to return bogus chip-state data at times.
+
+    * can_verify.c: Corrected search path for W98 WDM drivers. Read
+      and display product name/version.
+
+    * A Vector compatibility library is now included. See Samples\Vector.
+
+    * We now support up to 64 hardware channels.
+
+    * kvaser.inf: Increased MaxCard registry setting to more
+      reasonable values (i.e. 16)
+
+    * Added object buffers for a customer-specific application.
+
+    * LAPcan driver: Corrected potential infinite loop in the ISR
+      when the card is removed unexpectedly
+
+    * Max number of USBcan's now 16 instead of 4
+
+    * Added logic and flags to canOpenChannel to handle init access
+      better.
+
+    * Corrected a problem where opening more than two handles to the
+      same channel under Windows 98 resulted in an error.
+
+    * Added documentation of the named parameter settings
+
+    * Fixed bug reported by Ipetronik - canReadSync() returned canOK
+      directly after bus-on, but no CAN message was available for read
+
+
+
+
+New Features and Fixed Problems in V3.1 (December 2001)
+=======================================================
+
+    *   This is a minor release with just a few bugfixes.
+
+    *   Fixed problem where the PCcan driver sometimes refused to start 
+        under Windows NT4. (Error message "Can not read IRQ" in the
+        CAN Hardware applet)
+
+    *   Fixed problem with the PCIcan driver sometimes refusing to start
+        (error message "EAN number corrupt" in the CAN Hardware applet)
+
+    *   Updated vcndrvms.dll for new CANalyzer.
+
+    *   Fixed problem with time synchronization in LAPcan driver.
+
+    *   Updates for Kvaser Navigator V1.3.
+
+
+
+New Features and Fixed Problems in V3.0 (October 2001)
+======================================================
+
+    *   Support for Windows XP.
+
+    *   New WDM-style driver replaces previous versions
+        for all hardware on Windows 98, and Windows ME. This driver is
+        essentially the same driver that is used under Windows 2000 and XP,
+        but without the multiprocessor support.
+
+    *   New driver replaces previous versions
+        for all hardware on Windows NT 4.0. This is essentially the WDM
+        driver minus the plug-and-play support, recompiled for NT 4.0.
+
+    *   For Windows 95 ONLY we continue to support the same (VxD) driver that
+        was shipped with earlier versions of canlib. This driver will be 
+        maintained but not further developed as Microsoft is now withdrawing 
+        the support for Windows 95.
+
+    *   sing32.dll now works on Windows 2000 (and all other platforms.) Note
+        that there are two different sing32.dll files: one for Windows 95
+        (the VxD driver) and one for all other platforms (the WDM-derived driver).
+
+    *   CANLIB SDK now includes a "DDK" for those who wants to write their
+        own driver routines.
+
+    *   New API functions, canParamXXX(), to save and restore named CAN bus
+        bitrate settings to the Registry.
+
+    *   16-bit support for PCcan has been completely removed and is now available
+        in a separate kit.
+
+    *   The documentation and help file have been updated.
+
+    *   WDM-style driver routines now use the event log again to log critical
+        errors.
+
+    *   Support for PCI-PCMCIA adapters.
+
+    *   NT4 driver should now be more robust when allocating resources.
+
+    *   canlib now supports up to 32 simultaneously open channels.
+
+    *   Fixed bug where canReadStatus() et al wasn't properly updated.
+
+    *   Support for USBcan.
+
+    *   Support for latest available Kvaser Navigator, Vector CANalyzer, CANoe.
+
+    *   canOpenChannel() now returns canERR_NOHANDLES if no handles are available. 
+        Previous releases could return canERR_INTERNAL sometimes.
+
+    *   canReadStatus() now correctly reports bus-off status.
+
+    *   LAPcan driver now correctly flushes the TX queue, if firmware 1.40 os later
+        is used.
+
+    *   Fixed bug in W95 driver (VxD) that could cause the time stamps to jump
+        wildly (1-2 seconds).
+
+    *   Silent mode now works on PCcan.
+
+    *   A number of various small bugfixes.
+
+
+
+New Features and Fixed Problems in V2.29 (May 2001)
+===================================================
+
+    *   Fixed a problem with canReadStatus(). Using LAPcan and Windows 95/98 
+        or NT4, this API did not correctly reflect a bus-off status of the 
+        corresponding handle.
+
+    *   Fixed problem that could cause LAPcan on Windows 2000 to hang the
+        machine the very first time it was used.
+
+
+
+New Features and Fixed Problems in V2.28
+========================================
+
+    *   The file vcndrvms.dll was updated to 3.1.19.0 for all platforms.
+        This file is needed for using the CANalyzer and CANoe and does not
+        affect other applications. Also, the SDK itself is unaffected by this
+        update.
+
+    *   Fixed problem with PCIcan driver for NT4; it could hang or complain
+        (in CAN Hardware, Diagnostic tab) about runaway interrupts.
+
+
+New Features and Fixed Problems in V2.27
+========================================
+
+    *   New API, canGetVersionEx(). 
+
+    *   Borland flavor of canlib32.lib (the import library for canlib32.dll) 
+        was updated to force "import by name" instead of "import by ordinal".
+        If you are using Borland C++Builder, you should relink your applications.
+        (If you are using Microsoft tools, you are not affected by this.)
+
+    *   Same change for sing32.lib (for sing32.dll)
+
+
+New Features and Fixed Problems in V2.26
+========================================
+
+
+    *   Support for Windows 2000. (Finally!)
+
+    *   Support for SWC and 1054 piggybacks on PCIcan.
+
+    *   Fixed problem with canReadStatus() that could cause the 
+        calling application to seemingly hang.
+
+
+
+New Features and Fixed Problems in V2.20
+========================================
+
+    *   Support for the PCIcan family of boards.
+
+    *   LAPcan driver should now work with CardWizard, CardWare, and SoftEx
+        PCMCIA plug-and-play software under Windows NT 4.0.
+
+    *   Error counters, read by canReadErrorCounters(), are now updated
+        more frequently.
+
+    *   The Delphi examples & component documentation have been improved.
+
+    *   An utility function GetErrorTextVB is added to canlib32.bas;
+        use it to get the textual interpretation of an error code
+
+    *   canSetBusParams now accepts down to four quanta per bit.
+        (It's not _recommended_ to use as little as 4 quanta per bit.)
+
+    *   Fixed bug where canReadWait could hang if it was passed a
+        low timeout value (like 5 ms.)
+
+    *   The online help (.chm) now includes code examples.
+
+    *   Driver interrupts are now shareable which should prevent hangs on
+        certain platforms.
+
+    *   An uninstallation bug was fixed (Windows 9x only.)
+
+    *   sing32.dll: Fixed problems with CANPC_reinitialize(),
+        INIPC_initialize_board(), CANPC_reset_board(),
+        CANPC_send_remote2().
+
+    *   canMSG_WAKEUP handling improved/fixed
+
+    *   The canlib.hlp file is now obsolete and superceded by the
+        canlib.chm file
+
+    *   canIOCTL_SET_TXACK added to on-line help
+
+    *   vcndrvms.dll included to support CANalyzer 3.0
+
+
+
+New Features and Fixed Problems in V2.11
+========================================
+* A problem where the timestamp from LAPcan wrapped after approx.
+  12 hours has been fixed. (The timestamp, having a 1 ms resolution, can
+  now be expected to wrap around after 1193 hours.)
+
+* A problem with PCcan not using the correct base address when installed
+  on a "clean" PC has been fixed. In the previous releases, the INF file
+  listed the base address (e.g. 0x300) of the PCcan. This was removed in
+  2.10 as it caused problems with some BIOSes. This caused the driver
+  to use the first real address range as the base address.
+  
+
+
+New Features and Fixed Problems in V2.10
+========================================
+* Support for CANalyzer 2.5.
+
+* The NT driver could give a spurious error message about the PCcan
+  card not being found even if the user was using LAPcan only. This
+  has been fixed.
+
+* A new Delphi component is included. (Still no help file, but the
+  source is included this time.)
+
+* canGetChannelData() can now report on "circuit capabilities" and
+  several other things. See the online help.
+
+* A new help file based on HTML help is included. Support for HTML help
+  is built into Windows 98 and Windows 2000, and is also present on
+  all systems where Internet Explorer 3.02 or later is installed (you
+  don't have to _use_ it but you have to _install_ it.)
+
+* An issue with kvalapw.dll has been fixed where canReadSpecific()
+  could crash under certain circumstances.
+
+* Full support for the new PCcan-S, PCcan-D, och PCcan-F models.
+
+* The sja1000 driver (PCcan) now starts ignoring error frames if they
+  happen too frequently (i.e. in the order of > 1000 per second.) It
+  will start reporting them again when an ordinary message is correctly
+  received or transmitted. This was done to stop the PC from hanging
+  due to high interrupt load when the bus is heavily disturbed.
+
+* The driver now sends a WM__CANLIB message containing canEVENT_RX
+  when an error frame is received, as well as a canEVENT_ERROR.
+
+
+
+New Features and Fixed Problems in V2.0
+=======================================
+
+* The PCcan driver's service name is renamed to 'vcannt' (previously 'vcanntp').
+For NT, the PCcan driver and the LAPcan driver are now the same file, kvalaps.sys.
+kvapccs.sys does no longer exist.
+
+* Support for CANalyzer 2.2b and later.
+
+* A problem in the PCcan driver with the 82527 circuits not always
+reporting received RTRs is fixed. Note that the identifier and the
+dlc is not available when reveiving RTRs with the 82527. The identifier will
+be set to 0x7fffffff and the dlc to 0. Use the SJA1000 circuits if you need
+_real_ support for RTRs.
+
+* The PCcan driver (527 circuits) could stop transmit sometimes. This
+has been corrected.
+
+* Improved error messages when the driver can't start due to, for example,
+resource problems.
+
+* The vcand.vxd and vcancard.vxd/kvapccx.vxd now perform a tighter
+version check, to avoid startup problems.
+
+* A problem where no status events (bus off, error passive) were 
+reported under Windows NT has been corrected.
+
+* The NT driver doesn't support MP machines but such machines are
+now detected and the driver will return canERR_DRIVERLOAD.
+
+* New API calls to flush transmit and receive buffers, and also to get
+thenumber of messages in the queues. (canIoCtl)
+
+* New API call, canWaitForEvent, for those who don't want to use
+Windows messages to get notifications when "something" has happened.
+There is also a way of getting an event handle to wait on. (canIoCtl)
+
+* canLocateHardware is obsolete (but retained for compatibility.)
+New applications should use canInitializeLibrary.
+
+* New API calls for enumerating the available channels.
+canGetNumberOfChannels(), canGetChannelData().
+
+* canOpen() is obsolete but retained for compatibility. New programs
+should use canOpenChannel() instead.
+
+* PCcan's INF file (W95/W98) has been improved to explicitly list
+all I/O ports used by the driver, to avoid resource conflicts.
+
+* The documentation and sample programs now use canOpenChannel instead
+of canOpen, and canInitializeLibrary instead of canLocateHardware.
+
+* The documentation is unfortunately not updated in all places yet.
+We expect to have the documentation ready within the next week.
+
+
+
+
+Problems Fixed in V1.9.1
+========================
+
+* The NT driver (LAPcan, PCcan) could hang the machine if canBusOn()
+  and canBusOff() were called repeatedly.
+
+* Simultaneously accessing the driver from two different processes
+  (i.e. applications) could cause problems (quitting one program closed
+  open CAN channels in the other programs too.) Note that this didn't happen
+  when two threads within the same process accessed the driver.
+
+* lapver.exe sometimes failed in finding VxDs under Windows 95.
+
+* Enabling receive notification (canSetNotify()) caused one WM__CANLIB
+  message per received CAN message. The new, correct behaviour is to send one
+  WM__CANLIB when the RX queue goes from empty to non-empty.
+
+
+
+New Features in V1.9
+====================
+
+* The performance of the LAPcan driver has been much improved.
+* The driver for PCcan is now pure 32-bit.
+* Several new sample programs have been added.
+* Those migrating from Softing's CANcard to LAPcan might be interested
+  in the sing32.dll library. See DOC\00readme-softing.txt.
+
+
+

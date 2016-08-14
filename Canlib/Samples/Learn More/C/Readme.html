@@ -1,0 +1,41 @@
+<h1>
+C samples
+</h1>
+
+<p>This is a collection of C programs which all demonstrate various features of Canlib. </p>
+
+<h2>Importing Canlib</h2>
+<p>Many of these samples are in the form of Visual Studio projects. These need to have a link to the Canlib headers. By default, they have a relative link from their directory in the installation path, but if you choose to move the samples somewhere else, you need to add a new link. This is done under Project Properties, C/C++, General, Additional Include Directories. </p>
+
+<h2><a href="candb">candb</a></h2>
+<p>An example of a program that can create, modify and use databases. When executed, it creates a small example database called temp.dlc.  </p>
+
+<h2><a href="candump">candump</a></h2>
+<p>A program which dumps any incoming messages to the screen. It is a bit like the one in <a href="../../Getting Started/C/CanDump.html">Part 2</a> of the tutorial but with more options. For usage instructions, run <code>candump.exe -?</code> </p>
+
+<h2><a href="channeldata">channeldata</a></h2>
+<p>Displays information about all the CAN channels. It does this using calls to <code>canGetChannelData</code>.</p>
+
+<h2><a href="echo">echo</a></h2>
+<p>Listens for messages on a channel. When it receives a message, it increases its identifier by 1 and sends it back.  </p>
+
+<h2><a href="gensig">gensig</a></h2>
+<p>Generates various signals and sends them as CAN messages. These can later be read by a program like the one in <a href="../../Getting Started/CSharp/VS2010/6_DBApp/Readme.html">Part 6</a> of the tutorial. </p>
+
+<h2><a href="kvrConfig">kvrConfig</a></h2>
+<p>Demonstrates how to configure remote devices using Kvrlib. A <a href="../NET/vs2010/Cs_kvrConfig/Readme.html">virtually identical program</a> in C# with a more in-depth readme is available. </p>
+
+<h2><a href="kvrConnect">kvrConnect</a></h2>
+<p>Shows how to discover devices using Kvrlib. This program also has a <a href="../NET/vs2010/Cs_kvrConfig/Readme.html">C# equivalent</a> with more information. </p>
+
+<h2><a href="kvTimeStampTester">kvTimeStampTester</a></h2>
+<p>Used to measure timestamp accuracy by sending a large number of messages to one channel to the other and checking their timestamps. The setup includes an example of how to use time domain handling. </p>
+
+<h2><a href="SimpleConsole">Simple console application</a></h2>
+<p>Sets up two channels and sends messages back and forth between them. </p>
+
+<h2><a href="Thread">Thread</a></h2>
+<p>Runs several threads that send and receive messages on different channels. </p>
+
+<h2><a href="Tx">Tx</a></h2>
+<p>A traffic generator. It opens a channel, and sends bursts of messages to the channel for a set period of time. </p>

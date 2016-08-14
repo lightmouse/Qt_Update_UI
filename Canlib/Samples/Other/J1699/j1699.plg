@@ -1,0 +1,223 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: j1699 - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\msmith\LOCALS~1\Temp\RSP113.tmp" with contents
+[
+/nologo /Zp1 /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Release/" /Fp"Release/j1699.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\J1699_CertEnhance\versions\IN PROGRESS\CheckMILLight.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\ClearCodes.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\ConnectProtocol.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\DetermineProtocol.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\DisconnectProtocol.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\FindJ2534Interface.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\InitProtocolList.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\IsDTCPending.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\IsDTCStored.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\j1699.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\Log2534Error.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\LogMsg.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\LogPrint.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\LogUserPrompt.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\ScreenOutput.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\SidRequest.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\SidResetResponseData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\SidSaveResponseData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\StopTest.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestToVerifyInUseCounters.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestToVerifyPerformanceCounters.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestToVerifyPermanentCodes.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestWithConfirmedDtc.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestWithFaultRepaired.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestWithNoDtc.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestWithNoFaultAfter3DriveCycles.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\TestWithPendingDtc.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyControlSupportAndData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyDiagnosticBurstSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyDiagnosticSupportAndData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyDTCPendingData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyDTCStoredData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyFreezeFrameSupportAndData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyGroupControlSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyGroupDiagnosticSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyGroupFreezeFrameSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyGroupMonitorTestSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyGroupVehicleInformationSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyLinkActive.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyMILData.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyMonitorTestSupportAndResults.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyO2TestResults.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyPermanentCodeSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyReservedServices.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyReverseGroupDiagnosticSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyReverseOrderSupport.c"
+"D:\J1699_CertEnhance\versions\IN PROGRESS\VerifyVehicleInformationSupportAndData.c"
+]
+Creating command line "cl.exe @C:\DOCUME~1\msmith\LOCALS~1\Temp\RSP113.tmp" 
+Creating temporary file "C:\DOCUME~1\msmith\LOCALS~1\Temp\RSP114.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/j1699.pdb" /map:"Release/j1699.map" /machine:I386 /out:"Release/j1699.exe" 
+".\Release\CheckMILLight.obj"
+".\Release\ClearCodes.obj"
+".\Release\ConnectProtocol.obj"
+".\Release\DetermineProtocol.obj"
+".\Release\DisconnectProtocol.obj"
+".\Release\FindJ2534Interface.obj"
+".\Release\InitProtocolList.obj"
+".\Release\IsDTCPending.obj"
+".\Release\IsDTCStored.obj"
+".\Release\j1699.obj"
+".\Release\Log2534Error.obj"
+".\Release\LogMsg.obj"
+".\Release\LogPrint.obj"
+".\Release\LogUserPrompt.obj"
+".\Release\ScreenOutput.obj"
+".\Release\SidRequest.obj"
+".\Release\SidResetResponseData.obj"
+".\Release\SidSaveResponseData.obj"
+".\Release\StopTest.obj"
+".\Release\TestToVerifyInUseCounters.obj"
+".\Release\TestToVerifyPerformanceCounters.obj"
+".\Release\TestToVerifyPermanentCodes.obj"
+".\Release\TestWithConfirmedDtc.obj"
+".\Release\TestWithFaultRepaired.obj"
+".\Release\TestWithNoDtc.obj"
+".\Release\TestWithNoFaultAfter3DriveCycles.obj"
+".\Release\TestWithPendingDtc.obj"
+".\Release\VerifyControlSupportAndData.obj"
+".\Release\VerifyDiagnosticBurstSupport.obj"
+".\Release\VerifyDiagnosticSupportAndData.obj"
+".\Release\VerifyDTCPendingData.obj"
+".\Release\VerifyDTCStoredData.obj"
+".\Release\VerifyFreezeFrameSupportAndData.obj"
+".\Release\VerifyGroupControlSupport.obj"
+".\Release\VerifyGroupDiagnosticSupport.obj"
+".\Release\VerifyGroupFreezeFrameSupport.obj"
+".\Release\VerifyGroupMonitorTestSupport.obj"
+".\Release\VerifyGroupVehicleInformationSupport.obj"
+".\Release\VerifyLinkActive.obj"
+".\Release\VerifyMILData.obj"
+".\Release\VerifyMonitorTestSupportAndResults.obj"
+".\Release\VerifyO2TestResults.obj"
+".\Release\VerifyPermanentCodeSupport.obj"
+".\Release\VerifyReservedServices.obj"
+".\Release\VerifyReverseGroupDiagnosticSupport.obj"
+".\Release\VerifyReverseOrderSupport.obj"
+".\Release\VerifyVehicleInformationSupportAndData.obj"
+]
+Creating command line "link.exe @C:\DOCUME~1\msmith\LOCALS~1\Temp\RSP114.tmp"
+<h3>Output Window</h3>
+Compiling...
+CheckMILLight.c
+ClearCodes.c
+ConnectProtocol.c
+DetermineProtocol.c
+DisconnectProtocol.c
+FindJ2534Interface.c
+InitProtocolList.c
+IsDTCPending.c
+IsDTCStored.c
+j1699.c
+Log2534Error.c
+LogMsg.c
+LogPrint.c
+LogUserPrompt.c
+ScreenOutput.c
+SidRequest.c
+SidResetResponseData.c
+SidSaveResponseData.c
+StopTest.c
+TestToVerifyInUseCounters.c
+TestToVerifyPerformanceCounters.c
+TestToVerifyPermanentCodes.c
+TestWithConfirmedDtc.c
+TestWithFaultRepaired.c
+TestWithNoDtc.c
+TestWithNoFaultAfter3DriveCycles.c
+TestWithPendingDtc.c
+VerifyControlSupportAndData.c
+VerifyDiagnosticBurstSupport.c
+VerifyDiagnosticSupportAndData.c
+VerifyDTCPendingData.c
+VerifyDTCStoredData.c
+VerifyFreezeFrameSupportAndData.c
+VerifyGroupControlSupport.c
+VerifyGroupDiagnosticSupport.c
+VerifyGroupFreezeFrameSupport.c
+VerifyGroupMonitorTestSupport.c
+VerifyGroupVehicleInformationSupport.c
+VerifyLinkActive.c
+VerifyMILData.c
+VerifyMonitorTestSupportAndResults.c
+VerifyO2TestResults.c
+VerifyPermanentCodeSupport.c
+VerifyReservedServices.c
+VerifyReverseGroupDiagnosticSupport.c
+VerifyReverseOrderSupport.c
+VerifyVehicleInformationSupportAndData.c
+Linking...
+Creating temporary file "C:\DOCUME~1\msmith\LOCALS~1\Temp\RSP116.tmp" with contents
+[
+/nologo /o"Release/j1699.bsc" 
+".\Release\CheckMILLight.sbr"
+".\Release\ClearCodes.sbr"
+".\Release\ConnectProtocol.sbr"
+".\Release\DetermineProtocol.sbr"
+".\Release\DisconnectProtocol.sbr"
+".\Release\FindJ2534Interface.sbr"
+".\Release\InitProtocolList.sbr"
+".\Release\IsDTCPending.sbr"
+".\Release\IsDTCStored.sbr"
+".\Release\j1699.sbr"
+".\Release\Log2534Error.sbr"
+".\Release\LogMsg.sbr"
+".\Release\LogPrint.sbr"
+".\Release\LogUserPrompt.sbr"
+".\Release\ScreenOutput.sbr"
+".\Release\SidRequest.sbr"
+".\Release\SidResetResponseData.sbr"
+".\Release\SidSaveResponseData.sbr"
+".\Release\StopTest.sbr"
+".\Release\TestToVerifyInUseCounters.sbr"
+".\Release\TestToVerifyPerformanceCounters.sbr"
+".\Release\TestToVerifyPermanentCodes.sbr"
+".\Release\TestWithConfirmedDtc.sbr"
+".\Release\TestWithFaultRepaired.sbr"
+".\Release\TestWithNoDtc.sbr"
+".\Release\TestWithNoFaultAfter3DriveCycles.sbr"
+".\Release\TestWithPendingDtc.sbr"
+".\Release\VerifyControlSupportAndData.sbr"
+".\Release\VerifyDiagnosticBurstSupport.sbr"
+".\Release\VerifyDiagnosticSupportAndData.sbr"
+".\Release\VerifyDTCPendingData.sbr"
+".\Release\VerifyDTCStoredData.sbr"
+".\Release\VerifyFreezeFrameSupportAndData.sbr"
+".\Release\VerifyGroupControlSupport.sbr"
+".\Release\VerifyGroupDiagnosticSupport.sbr"
+".\Release\VerifyGroupFreezeFrameSupport.sbr"
+".\Release\VerifyGroupMonitorTestSupport.sbr"
+".\Release\VerifyGroupVehicleInformationSupport.sbr"
+".\Release\VerifyLinkActive.sbr"
+".\Release\VerifyMILData.sbr"
+".\Release\VerifyMonitorTestSupportAndResults.sbr"
+".\Release\VerifyO2TestResults.sbr"
+".\Release\VerifyPermanentCodeSupport.sbr"
+".\Release\VerifyReservedServices.sbr"
+".\Release\VerifyReverseGroupDiagnosticSupport.sbr"
+".\Release\VerifyReverseOrderSupport.sbr"
+".\Release\VerifyVehicleInformationSupportAndData.sbr"]
+Creating command line "bscmake.exe @C:\DOCUME~1\msmith\LOCALS~1\Temp\RSP116.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+j1699.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

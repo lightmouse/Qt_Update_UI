@@ -1,0 +1,32 @@
+<h1>Introduction to t programming</h1>
+
+<p>This section is intended as a brief introduction to the t programming language for someone who has never seen it before. For more details, see the samples or the reference manual.</p>
+
+<h2>Syntax</h2>
+<p>Overall, the syntax of t is very similar to that of C. Anyone who has programmed in C, C++, C# or any similar language will recognize a lot of the syntax and structures of programs.</p>
+
+<h2>Features</h2>
+
+<h3>Hooks</h3>
+<p>One important feature of t is its event hooks. A hook is essentially a subprocedure which is executed whenever some event occurs. The t language makes it possible to define hooks for a number of different events. A few examples are starting the script, stopping the script, receiving a message with a certain identifier etc.  </p>
+
+<h3>Environment variables</h3>
+<p>Apart from local and global variables, t contains a third class called environment variables. These variables can be accessed globaly in the program but can also be accessed by other programs running on the same device, as well as from a computer through Canlib. This makes them useful for sending information between programs. </p>
+
+<p>To access environment variables, use the <code>envvarSetValue</code> and <code>envvarGetValue</code> functions. </p>
+
+<h3>Data structures</h3>
+<p>Like C, t has support for structures, which are essentially a collection of variables. It has a few predefined structures such as <code>CanMessage</code> and <code>Timer</code>. </p>
+
+<p>Arrays are also supported. Multi-dimensional arrays are not supported, but it is possible to put an array as a member of a structure, and making an array of that structure. </p>
+
+<p>To make working with files more convenient, it is possible to serialize structures into arrays of bytes or characters. This is done by declaring an array of the same size and assigning the structure to it. Deserialization is done in a similar way: just assign the array to the structure. </p>
+
+<h2>Compiling and running</h2>
+<p>The Canlib SDK includes a compiler for t programs. It is called <code>scc.exe</code> and is located in the <code>Bin</code> directory. This can be used to compile <code>.t</code> files to generate executable <code>.txe</code> files.</p>
+
+<p>There is a lightweight IDE for writing t programs included with the SDK. It is called TRX and is also available in the <code>Bin</code> directory. </p>
+
+<p>You can use <code>tutil.exe</code> to load your t program to your device and start it. An example usage of this program could be <code>tutil.exe -channel=0 -slot=0 -load myprog.txe -start -listen 30 -stop -unload</code>. This command will load the program <code>myprog.txe</code> to slot 0 on the device on channel 0. It will then start it, print all its output for 30 seconds and then stop and unload the program. For a full list of commands, type <code>tutil.exe -?</code>.
+
+<p>Note that if your program's start hook leads to an exception or loop, you might get an error message from Canlib when loading the program.  </p>

@@ -1,0 +1,28 @@
+<h1>
+Part 2: Receiving messages
+</h1>
+<a href=".">VS2010 project</a>, <a href="../../VS2008/2_CanDump">VS2008 project</a>
+
+<p>
+In the previous part, we demonstrated how to construct a program which sends a message on a CAN channel. In this part, we will show how to read messages from the channel.
+</p>
+
+<h2>Step 1: Setup</h2>
+<p>Like in the previous example, we need to initialize the library, open a channel and go on bus. We've also reused the <code>CheckStatus</code> method.</p>
+
+<h2>Step 2: Waiting for messages</h2>
+<p>In the <code>DumpMessageLoop</code> method, we first declare some variables for holding the incoming messages. The incoming messages consist of the same parameters as the outgoing ones we saw in the previous part (identifier, body, length and flags), as well as a timestamp. </p>
+
+<p>Next, we start a loop where we call the <code>canReadWait</code> method to wait for a message on the channel. This method has a timeout parameter which in this case is set to 100 ms. If a message is received during this time, it will return the status code <code>canOK</code> and the message will be written to the output parameters. If no message is received, it will return <code>canERR_NOMSG</code>.  </p>
+
+<h2>Step 3: Exiting the program</h2>
+<p>The last thing we do in the loop is to print any error status except for <code>canERR_NOMSG</code> and exit the program if one appears, since they would imply that an error in reading the messages has occurred. We also check if the user has pressed the <code>Escape</code> key during the last loop, in which case we also exit. </p>
+
+<p>When we're done reading messages, we go off bus and close the channel, as always. </p>
+
+<h2>Exercises</h2>
+<ul>
+<li>Start this program, then run the Hello World program from the previous example. Make sure to modify one of the programs so they use different channels on the same device.</li>
+<li>Send an error message to your program using the <code>canMSG_ERROR_FRAME</code> flag.</li>
+<li>The <code>canReadSync</code> method waits until there is a message on the channel, but doesn't read the message. The <code>canRead</code> method reads messages, but returns <code>canERR_NOMSG</code> immediately if there is no message on the channel. Rewrite the program to use these methods instead of <code>canReadWait</code>.</li>
+</ul>

@@ -1,0 +1,8 @@
+
+\registry\machine\system\currentcontrolset\services\vcanv
+    Type = REG_DWORD 0x00000001
+    Start = REG_DWORD 0x00000002
+    ErrorControl = REG_DWORD 0x00000001
+    ImagePath = REG_EXPAND_SZ system32\drivers\vcanv.sys
+    DisplayName = REG_SZ Kvaser Virtual CAN Driver
+

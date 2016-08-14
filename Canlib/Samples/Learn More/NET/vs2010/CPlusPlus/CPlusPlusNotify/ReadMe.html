@@ -1,0 +1,31 @@
+<h1>
+Asynchronous notifications
+</h1>
+
+<p>Code available <a href=".">here</a>.</p>
+
+<p>
+This C++ program demonstrates some basic functionalities of the Canlib API. It allows the user to open up a channel and displays any incoming messages on that channel. A <a href="../../Notify/Readme.html">similar program in C#</a> is available.
+</p>
+
+<h2>Preliminaries</h2>
+<p>
+In order to build this project, you need have canlibCLSNET.dll in your path. In Visual Studio, you can do this by adding it as a reference.
+</p>
+
+<h2>Usage</h2>
+<p>
+To test the program, select Debug and Run in Visual Studio, or use the .exe file produced when building the project. <br \>
+You will see a window that looks something like this: </p>
+<img src="Notify.png" />
+<p>Select a channel (0 by default) and click Initialize Channel, then Bus On. 
+You will see messages displaying the (hopefully) successful calls to the Canlib methods used to open a channel and go on the bus. 
+Next, using another program (such as Kvaser CanKing), send a message to the channel you just opened. 
+You will see one message saying that a message has been received, and one displaying the actual message.
+</p>
+
+<h2>Understanding the program</h2>
+<p>
+When the channel is initialized, the  <code>canSetNotify</code> method is called with a handle to the window. This ensures that whenever the channel handle receives an event, the <code>WndProc</code> method will be called with the event as a parameter. 
+The <code>WndProc</code> method displays the event type, then reads any messages on the channel and displays those as well. Note that the messages on the channel are not part of the message parameter to <code>WndProc</code>, so we call <code>canRead</code> to read them as usual. </p>
+<p>Further information can be found in the documentation page for <code>canSetNotify</code>. </p>

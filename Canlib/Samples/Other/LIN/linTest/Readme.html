@@ -1,0 +1,29 @@
+<h1>LIN sample program</h1>
+
+<a href=".">Source code</a>
+
+<p>Simple test program for the LIN BUx.
+Requires LAPcan + DRVLIN.
+  Sends and receives messages.</p>
+
+<p>linlib.dll must be somewhere in the path for the application to run.</p>
+
+<p>The program is written in C and has been tested with Borland and Microsoft compilers.</p>
+
+<h2>Usage</h2>
+You may use one of the following flags:
+<dl>
+<dt>n</dt><dd>Where n is the channel number</dd>
+<dt>-m</dt><dd>The channel is a master with this flag, without it is a slave</dd>
+</dl>
+<p>Example: <code>linTest 1 -m</code></p>
+<p>Will go on bus with channel 1 as master</p>
+
+<p>Run it in two different console windows:</p>
+
+
+<p><code>  1) linTest 0 <br />
+    2) linTest 1 -m</code></p>
+
+<p>(1) will then operate as a slave on channel 0,
+  and (2) will operate as a master on channel 1.</p>

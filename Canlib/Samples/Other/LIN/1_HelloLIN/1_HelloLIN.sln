@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_HelloLIN", "1_HelloLIN\1_HelloLIN.csproj", "{85655655-A0A8-4D11-9B3A-D3063907324D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85655655-A0A8-4D11-9B3A-D3063907324D}.Debug|x86.ActiveCfg = Debug|x86
+		{85655655-A0A8-4D11-9B3A-D3063907324D}.Debug|x86.Build.0 = Debug|x86
+		{85655655-A0A8-4D11-9B3A-D3063907324D}.Release|x86.ActiveCfg = Release|x86
+		{85655655-A0A8-4D11-9B3A-D3063907324D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

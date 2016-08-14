@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/icons">
+        <file>play64.png</file>
+        <file>stop64.png</file>
+        <file>send64.png</file>
+    </qresource>
+</RCC>

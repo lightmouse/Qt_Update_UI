@@ -1,0 +1,5 @@
+;
+; See vcany.reg for more comments.
+;
+\registry\machine\system\currentcontrolset\services\pcmcia\database\KVASER\LAPcan II
+    Driver = kcanx

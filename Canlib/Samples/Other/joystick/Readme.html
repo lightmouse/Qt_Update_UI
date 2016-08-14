@@ -1,0 +1,23 @@
+<h1>Joystick sample program</h1>
+
+<a href=".">Code available here</a>
+
+<p>Joystick.cpp is a win32 console program that reads the position of a joystick
+connected to the game port and sends out CAN messages with the position.</p>
+
+<p>You will need a game port on your computer :-)</p>
+
+<p>Start like this:</p>
+
+<code>joystick [channel][bitrate][id][msperiod]</code>
+
+<p>where <code>channel</code> is the channel number (default 0), <code>bitrate</code> the CAN bus bit rate
+(default 500 kbps), <code>id</code> the CAN identifier (default 500 std) and <code>msperiod</code>
+the time between the messages in ms (default 100).</p>
+
+<p>The program is just intended as an example of how to use CANLIB. It's not
+performance optimized in any way. It may, or may not, be useful
+for you.</p>
+
+<p>The program is written in C++ and has been tested with Microsoft compilers.</p>
+

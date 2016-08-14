@@ -1,0 +1,614 @@
+﻿; kvaser2.inf
+; Kvaser CAN drivers for Windows 98/ME/2000/XP/2003/Vista/Win7
+; Copyright 1997-2013 KVASER, Sweden - http://www.kvaser.com
+; These drivers will NOT replace or interfere with drivers from Vector Informatik.
+; Note: character encoding in the source file is UTF-8
+;
+; DO NOT EDIT - THIS FILE IS GENERATED AUTOMATICALLY.
+; This file belongs to CANLIB 5.0
+;
+[Version]
+Signature="$CHICAGO$"
+Class=CanDevices
+Provider=%MFGNAME%
+ClassGuid={D26B6F67-69F6-4EB8-8594-D9F0E0139601}
+DriverVer=03/01/2013,8.00.120.0
+CatalogFile.nt=kvaser2.cat
+
+[Manufacturer]
+%MFGNAME%=Kvaser
+
+[ControlFlags]
+; ExcludeFromSelect=PCI\VEN_10E8&DEV_8406
+; ExcludeFromSelect=PCMCIA\KVASER-LAPCAN-2278
+
+
+;------------------------------------------------------------------------------
+; Supported Devices
+; Note that all PnP ids for a given device must be on the same line
+; thanks to W98
+;------------------------------------------------------------------------------
+
+[Kvaser]
+%kcanv.DeviceDesc%=kcanv.DriverInstall,kcanv
+%kcanlr.DeviceDesc%=kcanlr.DriverInstall, {D26B6F67-69F6-4EB8-8594-D9F0E0139601}\kcanlr
+%kcanyr.DeviceDesc%=kcanyr.DriverInstall, {D26B6F67-69F6-4EB8-8594-D9F0E0139601}\kcanyr
+%kvnetenum.DeviceDesc%=kvnetenum.DriverInstall, root\kvnetenum
+%kcanh.DeviceDesc%=kcanh.DriverInstall,PCI\VEN_10E8&DEV_8406
+%kcans.DeviceDesc%=kcans.DriverInstall,PCI\VEN_10E8&DEV_8407
+%kcanx1.DeviceDesc%=kcanx1.DI,PCMCIA\KVASER-LAPCAN-2278,PCMCIA\KVASER-LapCAN-01EE-000C,PCMCIA\KVASER-LAPCAN-2BDE,PCMCIA\KVASER-LAPCAN-8C86,PCMCIA\KVASER-LAPCAN-01EE-001D
+%kcanx2.DeviceDesc%=kcanx2.DI,PCMCIA\KVASER-LAPCAN_II-482C,PCMCIA\KVASER-LAPCAN_II-01EE-0073,PCMCIA\KVASER-LAPCAN_II-0A2D
+%usbcan_b.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0002&REV_0001
+%scania_vci2.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0003&REV_0001
+%usbcan_2.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0004&REV_0001
+%memorator.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0005&REV_0001
+%dh.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0007&REV_0001
+%amer.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0008&REV_0001
+%wave.DeviceDesc%=kcane.DriverInstall,USB\VID_0BFD&PID_0009&REV_0001
+%filo_0A.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_000A&REV_0001
+%filo_0B.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_000B&REV_0001
+%filo_0C.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_000C&REV_0001
+%filo_0D.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_000D&REV_0001
+%filo_0E.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_000E&REV_0001
+%filo_0F.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_000F&REV_0001
+%filo_10.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0010&REV_0001
+%filo_11.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0011&REV_0001
+%filo_12.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0012&REV_0001
+%filo_13.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0013&REV_0001
+%filo_14.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0014&REV_0001
+%filo_16.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0016&REV_0001
+%filo_17.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0017&REV_0001
+%filo_18.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0018&REV_0001
+%filo_19.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0019&REV_0001
+%filo_1A.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_001A&REV_0001
+%filo_1B.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_001B&REV_0001
+%filo_1C.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_001C&REV_0001
+%filo_1D.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_001D&REV_0001
+%filo_1E.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_001E&REV_0001
+%filo_1F.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_001F&REV_0001
+%filo_20.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0020&REV_0001
+%filo_21.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0021&REV_0001
+%filo_22.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0022&REV_0001
+%filo_23.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0023&REV_0001
+%filo_24.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0024&REV_0001
+%filo_25.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0025&REV_0001
+%filo_26.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0026&REV_0001
+%filo_27.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0027&REV_0001
+%filo_28.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0028&REV_0001
+%filo_29.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0029&REV_0001
+%filo_2A.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_002A&REV_0001
+%filo_2B.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_002B&REV_0001
+%filo_2C.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_002C&REV_0001
+%filo_2D.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_002D&REV_0001
+%filo_2E.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_002E&REV_0001
+%filo_2F.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_002F&REV_0001
+%filo_30.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0030&REV_0001
+%filo_31.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0031&REV_0001
+%filo_120.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0120&REV_0001
+%filo_121.DD%=kcanl.DriverInstall,USB\VID_0BFD&PID_0121&REV_0001
+%mhydra_100.DD%=kcany.DriverInstall,USB\VID_0BFD&PID_0100&REV_0001
+%mhydra_101.DD%=kcany.DriverInstall,USB\VID_0BFD&PID_0101&REV_0001
+%mhydra_102.DD%=kcany.DriverInstall,USB\VID_0BFD&PID_0102&REV_0001
+%pci_06.DD%=kcans.DriverInstall,PCI\VEN_1A07&DEV_0006&SUBSYS_00061A07
+%pci_07.DD%=kcans.DriverInstall,PCI\VEN_1A07&DEV_0007&SUBSYS_00071A07
+%pci_08.DD%=kcanh.DriverInstall,PCI\VEN_1A07&DEV_0008&SUBSYS_00081A07
+%pci_09.DD%=kcans.DriverInstall,PCI\VEN_1A07&DEV_0009&SUBSYS_00091A07
+%pci_0A.DD%=kcanh.DriverInstall,PCI\VEN_1A07&DEV_000A&SUBSYS_000A1A07
+%pci_0B.DD%=kcanh.DriverInstall,PCI\VEN_1A07&DEV_000B&SUBSYS_000B1A07
+
+
+
+;------------------------------------------------------------------------------
+;  Class Install Section
+;------------------------------------------------------------------------------
+
+[ClassInstall]
+AddReg=CanClassRegist
+
+[ClassInstall32]
+Addreg=CanClassRegist
+
+[CanClassRegist]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+
+;------------------------------------------------------------------------------
+;  Installation Disk Information
+;------------------------------------------------------------------------------
+
+[SourceDisksFiles]
+kcane-2.sys=1
+kcanl-2.sys=1
+kcanh-2.sys=1
+kcans-2.sys=1
+kcanv-2.sys=1
+kcany-2.sys=1
+kcanlr-2.sys=1
+kcanyr-2.sys=1
+kvnetenum-2.sys=1
+kcanx-2.sys=1
+kcane.sys=1
+kcanl.sys=1
+kcanh.sys=1
+kcans.sys=1
+kcanv.sys=1
+kcanx.sys=1
+kcany.sys=1
+kcanconf.exe=1
+kvaser.cpl=1
+kvalapw.dll=1
+kvalapw2.dll=1
+canlib32.dll=1
+kvaser_vcndrvms.dll=1
+
+[SourceDisksNames]
+1=%InstDisk%,,,
+
+
+;------------------------------------------------------------------------------
+;  Windows 2000 Sections
+;------------------------------------------------------------------------------
+
+[kcane.DriverInstall.NT]
+;-- CopyFiles=kcane.Copy2,tools.sys.copy
+AddReg=kcane.registry,canlib.registry
+
+[kcanl.DriverInstall.NT]
+;-- CopyFiles=kcanl.Copy2,tools.sys.copy
+AddReg=kcanl.registry,canlib.registry
+
+[kcanh.DriverInstall.NT]
+;-- CopyFiles=kcanh.Copy2,tools.sys.copy
+AddReg=kcanh.registry,canlib.registry
+
+[kcans.DriverInstall.NT]
+;-- CopyFiles=kcans.Copy2,tools.sys.copy
+AddReg=kcans.registry,canlib.registry
+
+[kcanv.DriverInstall.NT]
+;-- CopyFiles=kcanv.Copy2,tools.sys.copy
+AddReg=kcanv.registry,canlib.registry
+
+[kcany.DriverInstall.NT]
+;-- CopyFiles=kcany.Copy2,tools.sys.copy
+AddReg=kcany.registry,canlib.registry
+
+[kcanlr.DriverInstall.NT]
+;-- CopyFiles=kcanlr.Copy2,tools.sys.copy
+AddReg=kcanlr.registry,canlib.registry
+
+[kcanyr.DriverInstall.NT]
+;-- CopyFiles=kcanyr.Copy2,tools.sys.copy
+AddReg=kcanyr.registry,canlib.registry
+
+[kvnetenum.DriverInstall.NT]
+;-- CopyFiles=kvnetenum.Copy2
+; AddReg
+
+[kcanx1.DI.NT]
+;-- CopyFiles=kcanx.Copy2,tools.sys.copy
+AddReg=kcanx.registry,canlib.registry
+
+[kcanx2.DI.NT]
+;-- CopyFiles=kcanx.Copy2,tools.sys.copy
+AddReg=kcanx.registry,canlib.registry
+
+[kcane.DriverInstall.NT.Services]
+AddService=kcane,2,kcane.ServiceInstall
+
+[kcanl.DriverInstall.NT.Services]
+AddService=kcanl,2,kcanl.ServiceInstall
+
+[kcany.DriverInstall.NT.Services]
+AddService=kcany,2,kcany.ServiceInstall
+
+[kcanh.DriverInstall.NT.Services]
+AddService=kcanh,2,kcanh.ServiceInstall
+
+[kcans.DriverInstall.NT.Services]
+AddService=kcans,2,kcans.ServiceInstall
+
+[kcanv.DriverInstall.NT.Services]
+AddService=kcanv,2,kcanv.ServiceInstall
+
+[kcanlr.DriverInstall.NT.Services]
+AddService=kcanlr,2,kcanlr.ServiceInstall
+
+[kcanyr.DriverInstall.NT.Services]
+AddService=kcanyr,2,kcanyr.ServiceInstall
+
+[kvnetenum.DriverInstall.NT.Services]
+AddService=kvnetenum,2,kvnetenum.ServiceInstall
+
+[kcanx1.DI.NT.Services]
+AddService=kcanx,2,kcanx.ServiceInstall
+
+[kcanx2.DI.NT.Services]
+AddService=kcanx,2,kcanx.ServiceInstall
+
+
+[kcane.ServiceInstall]
+DisplayName=%usbcan_2.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcane.sys
+
+[kcanl.ServiceInstall]
+DisplayName=%filo.ServiceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcanl.sys
+
+[kcany.ServiceInstall]
+DisplayName=%mhydra.ServiceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcany.sys
+
+[kcanh.ServiceInstall]
+DisplayName=%kcanh.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcanh.sys
+
+[kcans.ServiceInstall]
+DisplayName=%kcans.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcans.sys
+
+[kcanv.ServiceInstall]
+DisplayName=%kcanv.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcanv.sys
+
+[kcanlr.ServiceInstall]
+DisplayName=%kcanlr.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcanlr.sys
+
+[kcanyr.ServiceInstall]
+DisplayName=%kcanyr.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcanyr.sys
+
+[kvnetenum.ServiceInstall]
+DisplayName=%kvnetenum.DeviceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kvnetenum.sys
+LoadOrderGroup=Extended Base
+AddReg=kvnetenum.Service.Registry
+
+
+[kcanx.ServiceInstall]
+DisplayName=%kcanx.ServiceDesc%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%10%\system32\drivers\kcanx.sys
+
+;------------------------------------------------------------------------------
+;  Windows 98 Sections
+;------------------------------------------------------------------------------
+
+[kcane.DriverInstall]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcane.Copy
+AddReg=kcane.DriverAddReg,kcane.registry,canlib.registry
+
+[kcanl.DriverInstall]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcanl.Copy
+AddReg=kcanl.DriverAddReg,kcanl.registry,canlib.registry
+
+[kcany.DriverInstall]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcany.Copy
+AddReg=kcany.DriverAddReg,kcany.registry,canlib.registry
+
+[kcanh.DriverInstall]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcanh.Copy
+AddReg=kcanh.DriverAddReg,kcanh.registry,canlib.registry
+
+[kcans.DriverInstall]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcans.Copy
+AddReg=kcans.DriverAddReg,kcans.registry,canlib.registry
+
+[kcanx1.DI]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcanx.Copy
+AddReg=kcanx.DriverAddReg,kcanx.registry,canlib.registry
+
+[kcanx2.DI]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcanx.Copy
+AddReg=kcanx.DriverAddReg,kcanx.registry,canlib.registry
+
+[kcanv.DriverInstall]
+DriverVer=03/01/2013,8.00.120.0
+;-- CopyFiles=tools.sys.copy98,kcanv.Copy
+AddReg=kcanv.DriverAddReg,kcanv.registry,canlib.registry
+
+
+[kcane.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcane.sys
+
+[kcanl.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcanl.sys
+
+[kcany.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcany.sys
+
+[kcanh.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcanh.sys
+
+[kcans.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcans.sys
+
+[kcanx.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcanx.sys
+HKR,,EnableIRQSharing,1,01,00,00,00
+
+[kcanv.DriverAddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,kcanv.sys
+
+;[kcanx.DI.LogConfigOverride]
+;LogConfig=kcanx.LogConfig
+;[kcanx.DI.NT.LogConfigOverride]
+;LogConfig=kcanx.LogConfig
+;[kcanx.LogConfig]
+;IRQConfig      = 3,4,5,7,9,10,11,12,13,14,15
+;IOConfig       = 8@100-3FF%FFF8(3FF::)
+;ConfigPriority = NORMAL
+;--
+;ConfigPriority  = DESIRED
+;IOConfig        = 8@100-400%FFF8
+;IOConfig        = 8@100-3FF(3ff::)
+; IRQConfig       = 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+
+
+
+;------------------------------------------------------------------------------
+;  Copy Files
+;------------------------------------------------------------------------------
+[DestinationDirs]
+DefaultDestDir      = 11
+kcane.Copy2=10,system32\drivers
+kcane.Copy=10,system32\drivers
+kcanl.Copy2=10,system32\drivers
+kcanl.Copy=10,system32\drivers
+kcany.Copy2=10,system32\drivers
+kcany.Copy=10,system32\drivers
+kcanh.Copy2=10,system32\drivers
+kcanh.Copy=10,system32\drivers
+kcans.Copy2=10,system32\drivers
+kcans.Copy=10,system32\drivers
+kcanlr.Copy2=10,system32\drivers
+kcanyr.Copy2=10,system32\drivers
+kvnetenum.Copy2=10,system32\drivers
+kcanv.Copy2=10,system32\drivers
+kcanv.Copy=10,system32\drivers
+kcanx.Copy2=10,system32\drivers
+kcanx.Copy=10,system32\drivers
+
+; Windows 2000 and later
+[tools.sys.Copy]
+kvalapw2.dll,,,2
+canlib32.dll,,,2
+kcanconf.exe,,,2
+kvaser_vcndrvms.dll,,,2
+
+; Windows 98
+[tools.sys.Copy98]
+kvaser.cpl,,,2
+kvalapw2.dll,,,2
+canlib32.dll,,,2
+kcanconf.exe,,,2
+kvaser_vcndrvms.dll,,,2
+
+[kcane.Copy]
+kcane.sys,,,2
+
+[kcanl.Copy]
+kcanl.sys,,,2
+
+[kcany.Copy]
+kcany.sys,,,2
+
+[kcanh.Copy]
+kcanh.sys,,,2
+
+[kcans.Copy]
+kcans.sys,,,2
+
+[kcanv.Copy]
+kcanv.sys,,,2
+
+[kcanx.Copy]
+kcanx.sys,,,2
+
+; xxxxx-2.sys are the W2K drivers (MP capable) but they must be named
+; xxxxx.sys in real life, so we rename them during installation.
+
+[kcane.Copy2]
+kcane.sys,kcane-2.sys,,2
+
+[kcanl.Copy2]
+kcanl.sys,kcanl-2.sys,,2
+
+[kcany.Copy2]
+kcany.sys,kcany-2.sys,,2
+
+[kcanh.Copy2]
+kcanh.sys,kcanh-2.sys,,2
+
+[kcans.Copy2]
+kcans.sys,kcans-2.sys,,2
+
+[kcanlr.Copy2]
+kcanlr.sys,kcanlr-2.sys,,2
+
+[kcanyr.Copy2]
+kcanyr.sys,kcanyr-2.sys,,2
+
+[kvnetenum.Copy2]
+kvnetenum.sys,kvnetenum-2.sys,,2
+
+[kcanv.Copy2]
+kcanv.sys,kcanv-2.sys,,2
+
+[kcanx.Copy2]
+kcanx.sys,kcanx-2.sys,,2
+
+
+;------------------------------------------------------------------------------
+;  Add Registry Entrys
+;------------------------------------------------------------------------------
+
+[canlib.registry]
+HKLM,"SOFTWARE\KVASER AB\CANLIB32\Devices\VCAN",Active,0x10001,1
+HKLM,"SOFTWARE\KVASER AB\CANLIB32\Devices\VCAN",Name,,"vcan"
+HKLM,"SOFTWARE\KVASER AB\CANLIB32\Devices\VCAN",DLL,,"kvalapw2.dll"
+
+[kcane.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcane",MaxCards,0x10001,16
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcane",DriverName,,kcane
+
+[kcanl.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanl",MaxCards,0x10001,64
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanl",DriverName,,kcanl
+
+[kcany.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcany",MaxCards,0x10001,64
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcany",DriverName,,kcany
+
+[kcanh.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanh",MaxCards,0x10001,16
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanh",DriverName,,kcanh
+
+[kcans.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcans",MaxCards,0x10001,16
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcans",DriverName,,kcans
+
+[kcanv.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanv",MaxCards,0x10001,2
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanv",DriverName,,kcanv
+HKLM,"System\CurrentControlSet\Services\kcanv\Parameters","VirtualBus",0x10001,1
+HKLM,"System\CurrentControlSet\Services\kcanv\Parameters","ChannelCount",0x10001,2
+
+[kcanlr.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanlr",MaxCards,0x10001,64
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanlr",DriverName,,kcanlr
+
+[kcanyr.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanyr",MaxCards,0x10001,64
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanyr",DriverName,,kcanyr
+
+[kvnetenum.Service.Registry]
+HKR,,DeviceCharacteristics,0x10001,0x0100         ; Use same security checks on relative opens
+HKR,,Security,,"D:P(A;;GA;;;BA)(A;;GA;;;SY)"      ; Allow generic-all access to Built-in administrators and Local system 
+
+[kcanx.registry]
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanx",MaxCards,0x10001,8
+HKLM,"SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanx",DriverName,,kcanx
+
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+MFGNAME="Kvaser AB"
+ClassName="CAN Hardware (Kvaser)"
+InstDisk="Kvaser Hardware Drivers"
+usbcan_b.DeviceDesc="Kvaser USBcan Rugged"
+usbcan_2.DeviceDesc="Kvaser USBcan II"
+scania_vci2.DeviceDesc="Scania VCI2"
+kcanh.DeviceDesc="Kvaser PCIcan"
+kcans.DeviceDesc="Kvaser PCIcan II"
+kcanv.DeviceDesc="Kvaser Virtual CAN Driver"
+kcanlr.DeviceDesc="Kvaser Network Proxy"
+kcanyr.DeviceDesc="Network Proxy Driver"
+kvnetenum.DeviceDesc="Kvaser Network Enumerator"
+kcanx1.DeviceDesc="Kvaser LAPcan"
+kcanx2.DeviceDesc="Kvaser LAPcan II"
+kcanx.ServiceDesc="Kvaser LAPcan Family Driver"
+memorator.DeviceDesc="Kvaser Memorator"
+dh.DeviceDesc="Danaher Motion USBcan"
+amer.DeviceDesc="Amersham URJ45"
+wave.DeviceDesc="Kvaser WAVEcan"
+filo.ServiceDesc="Kvaser Leaf Family Driver"
+filo_0A.DD="Kvaser Leaf Prototype"
+filo_0B.DD="Kvaser Leaf Light HS"
+filo_0C.DD="Kvaser Leaf Professional HS"
+filo_0D.DD="Kvaser Leaf E"
+filo_0E.DD="Kvaser Leaf SemiPro HS"
+filo_0F.DD="Kvaser Leaf Professional LS"
+filo_10.DD="Kvaser Leaf Professional SWC"
+filo_11.DD="Kvaser Leaf Professional LIN"
+filo_12.DD="Kvaser Leaf SemiPro LS"
+filo_13.DD="Kvaser Leaf SemiPro SWC"
+filo_14.DD="Kvaser Leaf SemiPro LIN"
+filo_16.DD="Kvaser Memorator Professional (Prototype)"
+filo_17.DD="Kvaser Memorator Professional HS/HS"
+filo_18.DD="Kvaser USBcan Professional HS/HS"
+filo_19.DD="Kvaser Leaf Light GI"
+filo_1A.DD="Kvaser Leaf Professional HS"
+filo_1B.DD="Kvaser Memorator Professional HS/LS"
+filo_1C.DD="Kvaser 立富L"
+filo_1D.DD="Kvaser BlackBird SemiPro"
+filo_1E.DD="Kvaser Reserved"
+filo_1F.DD="Kvaser BlackBird Professional"
+filo_20.DD="Kvaser Memorator R SemiPro"
+filo_21.DD="Kvaser Memorator Light"
+filo_22.DD="SmartCraft Diagnostic Interface"
+filo_23.DD="Kvaser OEM"
+filo_24.DD="Kvaser USBcan Pro SHS/HS"
+filo_25.DD="Kvaser USBcan Pro SHS/SHS"
+filo_26.DD="Diagnostic Cable"
+filo_27.DD="Kvaser USBcan R"
+filo_28.DD="Kvaser Reserved"
+filo_29.DD="Kvaser Reserved"
+filo_2A.DD="Kvaser Reserved"
+filo_2B.DD="Kvaser Reserved"
+filo_2C.DD="Kvaser Reserved"
+filo_2D.DD="Kvaser Reserved"
+filo_2E.DD="Kvaser Reserved"
+filo_2F.DD="Kvaser Reserved"
+filo_30.DD="Kvaser Memorator Light"
+filo_31.DD="Kvaser USBcan Pro HS/K-line"
+filo_120.DD="Kvaser Leaf Light v2"
+filo_121.DD="Kvaser Mini PCI Express HS"
+mhydra.ServiceDesc="Kvaser Eagle Family Driver"
+mhydra_100.DD="Kvaser Eagle"
+mhydra_101.DD="Scania VCI3"
+mhydra_102.DD="Kvaser BlackBird v2"
+pci_06.DD="Kvaser PC104+"
+pci_07.DD="Kvaser PCIcanx II"
+pci_08.DD="Kvaser PCIEcan"
+pci_09.DD="Kvaser PCI104"
+pci_0A.DD="Kvaser Reserved"
+pci_0B.DD="Kvaser Reserved"

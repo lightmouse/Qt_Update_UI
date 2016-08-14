@@ -1,0 +1,21 @@
+<h1>
+Using events
+</h1>
+
+<a href=".">VS2010 project</a>
+
+<p>This part is a continuation of the previous part, where we created a graphical application that could send and receive messages. That program used <code>canReadWait</code> to wait for messages. In this program we will use event handles instead.</p>
+
+<h2>About events</h2>
+<p>Canlib can create Win32 event handles, which are signaled whenever something happens on the channel. These event handles can then be used to wait for an event to occur. These events include received messages, transmit events, error frames and status events.</p>
+
+<h2>Creating event handles</h2>
+<p>In this program, we've added the class <code>CanlibWaitEvent</code>, which extends the <code>WaitHandle</code> class. This class contains a <code>SafeWaitHandle</code> object, which in turn wraps the event handle which we receive from Canlib.</p>
+
+<p>The event handle itself is created by a call to <code>canIoCtl</code> with the <code>canIOCTL_GET_EVENTHANDLE</code> function code. This call gives a pointer to the event handle, which is in turn sent to the <code>SafeWaitHandle</code> constructor. </p>
+
+<h2>Using event handles</h2>
+<p>In our application, we declare an instance variable of the <code>WaitHandle</code> class. This object is created when we go on bus. We still have the<code> BackgroundWorker</code> which is used to run the <code>DumpMessageLoop</code> method. In <code>DumpMessageLoop</code>, we add a call to the <code>WaitOne</code> method of our event handle. This call will block until an event occurs (in which case it returns true) or until a timeout is reached (which means it returns false). The parameter in the call is how long the call should wait for an event, measured in milliseconds. In this case it is set to 100 ms. A value of -1 means that it will wait indefinitely. Once <code>WaitOne</code> returns true, we read all the messages in the receive buffer, like in the previous example. </p>
+
+<h2>More information</h2>
+<p>To learn more about event handles, take a look at the documentation for the<code> WaitHandle</code> and <code>SafeWaitHandle</code> classes. </p>

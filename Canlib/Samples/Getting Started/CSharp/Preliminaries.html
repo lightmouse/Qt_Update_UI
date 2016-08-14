@@ -1,0 +1,23 @@
+<h1>
+Before you start
+</h1>
+
+<p>Here we will go through some things that might be good to know before you start programming with Canlib.</p>
+
+<h2>Importing Canlib</h2>
+<p>In order to program using Canlib, you will need to add a reference to the library. To do this in Visual Studio, follow these steps:</p>
+<ol>
+<li>Right click on your project in the Solution Explorer and select "Add reference". In some versions of Visual Studio, you need to right click the References folder under your project instead.</li>
+<li>Right click on your project and select "Properties" (Hotkey: Alt+Enter). Then select Build. Under "Configurations", select "All Configurations" and under "Target platform" select either "x86" or "x64".</li>
+<li>Press "Browse" and browse to the correct version of the CanlibCLSNET.dll. It will be in the "Canlib\dotnet" directory, but which file to use depends on your target platform and .NET version. If you're building your project for 32 bit processors, select the x86 directory. If you're building for 64 bit processors, select x64. Next, you need to pick the correct dll for your version of the .NET Framework. If you use a version older than 4.0, select fw11 (x86 only), otherwise select fw40. In this directory, you will find the .dll you need. </li>
+<li>You should now be able to write a program by importing the CanlibCSLNET namespace. (<code>using CanlibCSLNET</code>)</li>
+</ol>
+
+<h2>CanKing</h2>
+<p>Kvaser CanKing is a CAN bus monitor which you can use to test your programs. You can find it in the <a href="http://www.kvaser.com/downloads/">Downloads</a> section of our website.</p>
+
+<p>CanKing can be used for both sending and receiving messages to and from your own programs. </p>
+
+<h2>Finding more information</h2>
+<p>For detailed information about the Canlib API, please see the help file <!Link>. If you want to know more about a method or some other part of the API while programming in Visual Studio, you can right click on it in your code and select "Go To Definition".</p> 
+

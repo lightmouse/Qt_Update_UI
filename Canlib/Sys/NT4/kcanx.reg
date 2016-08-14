@@ -1,0 +1,24 @@
+;
+; Installs the vcanx driver and entries so one LAPcan I or one CANcardX can run.
+; Entries for LAPcan II are setup in vcany.reg / kcany.reg
+;
+\registry\machine\system\currentcontrolset\services\kcanx
+    Type = REG_DWORD 0x00000001
+    Start = REG_DWORD 0x00000002
+    ErrorControl = REG_DWORD 0x00000001
+    ImagePath = REG_EXPAND_SZ system32\drivers\kcanx.sys
+    DisplayName = REG_SZ Kvaser LAPcan/LAPcan II Driver
+
+\registry\machine\system\currentcontrolset\services\kcanx1\Parameters
+    BusNumber = REG_DWORD 0x0000000
+    BusType = REG_DWORD 0x0000001
+    Pcmcia = REG_DWORD 0x0000001
+    IoLength = REG_DWORD 0x0000008
+    IoBaseAddress = REG_DWORD 0x0000220
+    InterruptNumber = REG_DWORD 0x0000007
+
+\registry\machine\system\currentcontrolset\services\pcmcia\database\KVASER\LapCAN
+    Driver = kcanx
+    ImagePath = REG_EXPAND_SZ system32\drivers\kcanx.sys
+
+

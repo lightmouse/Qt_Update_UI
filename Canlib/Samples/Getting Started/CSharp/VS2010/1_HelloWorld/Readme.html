@@ -1,0 +1,38 @@
+<h1>
+Part 1: Hello world!
+</h1>
+<a href=".">VS2010 project</a>, <a href="../../VS2008/1_HelloWorld">VS2008 project</a>
+
+<p>
+In this part, we will demonstrate how to open a channel and send a message on it.
+</p>
+
+<h2>Step 1: Preliminaries</h2>
+<p>Make sure you have added the correct version of canlibCLSNET.dll as a reference in your project. In your the class file for the project, import the canlibCLSNET namespace:</p>
+
+<p><code> using canlibCLSNET; </code></p>
+
+<h2>Step 2: Initializing Canlib and setting up a channel</h2>
+<p>The first thing we need to do is to initialize the Canlib library with a call to <code>Canlib.initializeLibrary()</code>. This always needs to be done before doing anything with the library.</p>
+
+<p>Next, we open up channel 0 and receive a handle to it. A handle is just an integer which is associated with a circuit on a CAN device. Depending on which type of devices you have, you might want to change the channel number (the first parameter in the call). The <code>canOPEN_ACCEPT_VIRTUAL</code> flag means that channel 0 can be on a virtual device. </p>
+
+<p>If the call to <code>Canlib.canOpenChannel</code> is successful, it will return an integer which is greater than or equal to zero. However, is something goes wrong, it will return an error status which is a negative number. To check for errors and print any possible error message, we can use the <code>DisplayError</code> method. This method takes a <code>Canlib.canStatus</code> (which is an enumerable) and the method name as an argument. If the status is an error code, it will print the corresponding error message. Most Canlib method return a status, and checking it with a method like this is a useful practice. </p>
+
+<p>Once we have successfully opened a channel, we need to set its bitrate. We do this using <code>canSetBusParams</code>, which takes the handle and the desired bitrate (another enumerable) as parameters. The rest of the parameters are set to 0 in this example.</p>
+
+<p>Next, take the channel on bus using the <code>canBusOn</code> method. This needs to be done before we can send a message.</p>
+
+<h2>Step 3: Send a message</h2>
+<p>In the beginning of the method we declared a byte array called "message". This will be the body of the message we send to the channel. We send the message using the <code>canWrite</code>. This method takes five parameters: the channel handle, the message identifier, the message body, the message length (in bytes) and optional flags. After this, we wait for at most 100 ms for the message to be send, using <code>canWriteSync</code>. </p>
+
+<h2>Step 4: Go off bus and close the channel</h2>
+<p>Once we are done using the channel, we go off bus and close it using the <code>canBusOff</code> and <code>canCloseChannel</code> methods, respectively. The both take the handle as their only argument.</p>
+
+<h2>Exercises</h2>
+<ul>
+<li>The <code>canWriteWait</code> method combines <code>canWrite</code> with <code>canWriteSync</code>. Try it out.</li>
+<li>Use some other program (such as Kvaser CanKing) to listen for messages on a channel connected to the one used in the program. Make sure to use the same bitrate.</li>
+<li>Change the fourth parameter in the call to <code>canWrite</code> to 4. What happens to the message on the receiving side?</li>
+<li>Change the message identifier to something large, like 10000. What happens on the receiving side? Then, change the fifth parameter to <code>Canlib.canMSG_EXT</code>. What happens now?</li>
+</ul>

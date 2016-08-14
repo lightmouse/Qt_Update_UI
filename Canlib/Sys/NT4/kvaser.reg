@@ -1,0 +1,59 @@
+;
+;  All entries in HKLM\Software\KVASER AB\CANDriver 1.0
+;
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanh
+    MaxCards = REG_DWORD 0x00000004
+    TimerEligibility = REG_DWORD 0x00000110
+    ChannelsPerCard = REG_DWORD 0x00000004
+    HwType = REG_DWORD 0x00000009
+    HwName = REG_SZ PCIcan
+    DriverName = REG_SZ kcanh
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcans
+    MaxCards = REG_DWORD 0x00000004
+    TimerEligibility = REG_DWORD 0x00000110
+    ChannelsPerCard = REG_DWORD 0x00000004
+    HwType = REG_DWORD 0x00000009
+    HwName = REG_SZ PCIcan II
+    DriverName = REG_SZ kcans
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanp
+    MaxCards = REG_DWORD 0x00000004
+    TimerEligibility = REG_DWORD 0x00000110
+    ChannelsPerCard = REG_DWORD 0x00000004
+    HwType = REG_DWORD 0x00000008
+    HwName = REG_SZ PCcan
+    DriverName = REG_SZ kcanp
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Hardware\kcanp\PCcan0
+    BaseAddress = REG_DWORD 0x300
+    IRQ = REG_DWORD 5    
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanv
+    MaxCards = REG_DWORD 0x00000001
+    TimerEligibility = REG_DWORD 0x00000100
+    ChannelsPerCard = REG_DWORD 0x00000002
+    HwType = REG_DWORD 0x00000001
+    HwName = REG_SZ Virtual
+    DriverName = REG_SZ kcanv
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Drivers\kcanx
+    MaxCards = REG_DWORD 0x00000002
+    TimerEligibility = REG_DWORD 0x00000300
+    ChannelsPerCard = REG_DWORD 0x00000002
+    HwType = REG_DWORD 0x00000002
+    HwName = REG_SZ LAPcan
+    DriverName = REG_SZ kcanx
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Options
+    AutoEnableSWCHighSpeed = REG_DWORD 0
+    DebugFlags = REG_DWORD 0
+    EnableTimeSync = REG_DWORD 0
+    TxQueueSize = REG_DWORD 256
+    VirtualBus = REG_DWORD 1
+    IdleTime = REG_DWORD 600
+
+\registry\machine\SOFTWARE\KVASER AB\CANDriver 1.0\Hardware\CANcardX
+    BindCANcardXOnSlot = REG_DWORD 0
+    ForceLevelSensitiveInterrupt = REG_DWORD 0
+    UseCardSerialNumber = REG_DWORD 0

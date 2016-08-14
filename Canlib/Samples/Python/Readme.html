@@ -1,0 +1,29 @@
+<h1>
+Python samples
+</h1>
+
+<p>This section contains wrappers for using the various libraries in Python. Most of them also contain some tests to show how to use them. </p>
+
+<h2><a href="canlib.py">canlib</a></h2>
+<p>Wraps calls to Canlib. It contains one class whose constructor wraps the <code>dll</code> and that has methods for different Canlib calls. It also has one class (canChannel) which represents a channel handle, to support a more object oriented programming style. Also has a main method which tests the class by opening a channel and printing any incoming messages.</p>
+
+<h2><a href="can_echo">can_echo</a></h2>
+<p>This program takes two channel numbers as parameters and opens those two channels, calling one the server an one the client. It then starts two threads which run concurrently: the client writes messages on its channel and waits for the server to reply, while the server waits for messages and replies to anything it receives, with the identifier increased by 100. </p>
+
+<h2><a href="kvaMemoLibXml.py">kvaMemoLibXml</a></h2>
+<p>Wraps calls to kvamemolibxml.dll</p>
+
+<h2><a href="kvDevice.py">kvDevice</a></h2>
+<p>The <code>kvDevice</code> class contains many useful methods for Canlib and Kvmlib calls. Also conatins some tests in the main method.</p>
+
+<h2><a href="kvMemoConfig.py">kvMemoConfig</a></h2>
+<p>Wraps the kvMemoConfig.dll functions.</p>
+
+<h2><a href="kvmlib.py">kvmLib</a></h2>
+<p>Contains methods for calling kvmLib, as well as some examples of how to use them.</p>
+
+<h2><a href="kvrlib.py">kvrLib</a></h2>
+<p>Wraps calls to Kvrlib. Includes a class for discovery handles. Some tests are included in the main method.</p>
+
+
+

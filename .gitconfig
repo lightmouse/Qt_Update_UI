@@ -1,0 +1,8 @@
+[user]
+name  = lightmouse
+email = 1323969679@qq.com 
+[http]
+sslVerify = false
+[credential]
+[credential]
+helper = wincred
